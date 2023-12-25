@@ -8,7 +8,7 @@ module.exports = (env, argv) => {
 
     return ({
         mode,
-        entry: './src/index.js',
+        entry: './src/index.jsx',
         devServer: {
             historyApiFallback: true
         },
