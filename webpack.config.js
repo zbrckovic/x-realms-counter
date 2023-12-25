@@ -9,6 +9,9 @@ module.exports = (env, argv) => {
     return ({
         mode,
         entry: './src/index.js',
+        devServer: {
+            historyApiFallback: true
+        },
         output: {
             publicPath: '/',
             path: path.resolve(__dirname, 'dist'),
