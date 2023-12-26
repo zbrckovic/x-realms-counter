@@ -7,6 +7,17 @@ export const TradeAndCombatSide = {
   RIGHT: 'RIGHT'
 }
 
+const sideClasses = {
+  [TradeAndCombatSide.LEFT]: styles.left,
+  [TradeAndCombatSide.RIGHT]: styles.right
+}
+
 export const TradeCombat = ({ className, side }) => {
-  return <div className={classNames(styles.root, className)}>Temp Turn State</div>
+  const sideClass = sideClasses[side]
+
+  return <div className={classNames(styles.root, className)}>
+    <button className={classNames(styles.trade, sideClass)}>trade</button>
+    <button className={classNames(styles.mode, sideClass)}>mode</button>
+    <button className={classNames(styles.combat, sideClass)}>combat</button>
+  </div>
 }

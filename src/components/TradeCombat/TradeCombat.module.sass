@@ -1,4 +1,38 @@
 .root
-  height: 100px
-  width: 100px
-  background: teal
+  height: 200px
+  width: 200px
+
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-template-rows: 1fr 1fr
+
+  .trade
+    background: yellow
+    grid-row: 1
+
+    &.left
+      grid-column: 1
+
+    &.right
+      grid-column: 2
+
+  .mode
+    background: gray
+    grid-row: 2
+
+    &.left
+      grid-column: 1
+
+    &.right
+      grid-column: 2
+
+  .combat
+    background: red
+    grid-row: 2
+
+    &.left
+      grid-column: 2
+
+    &.right
+      grid-column: 1
+

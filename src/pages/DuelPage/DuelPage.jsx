@@ -46,7 +46,7 @@ export const DuelPage = () => {
     </button>
     <TradeCombat
       className={classNames(styles.tradeAndCombat, turnClasses[playerIndex])}
-      side={turnSide}
+      side={turnSide[playerIndex]}
     />
   </div>
 }
