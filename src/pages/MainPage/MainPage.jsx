@@ -1,23 +1,32 @@
 import React, { useContext } from 'react'
 import styles from './MainPage.module.sass'
-import { GameCtx, SetupCtx } from 'contexts'
+import { GameCtx } from 'contexts'
+import { PlayerStyle } from '../../player-style'
 
 export const MainPage = ({ goToGamePage }) => {
-  const { setup } = useContext(SetupCtx)
   const { startGame } = useContext(GameCtx)
 
   return <div className={styles.root}>
     <h1>Main</h1>
     <button
       onClick={() => {
-        startGame(setup)
+        startGame({
+          mode: 'Duel',
+          players: [
+            {
+              style: PlayerStyle.RED,
+              initHitPoints: 60
+            },
+            {
+              style: PlayerStyle.BLUE,
+              initHitPoints: 80
+            }
+          ]
+        })
         goToGamePage()
       }}
     >
       Start Game
     </button>
-    <pre>
-      {JSON.stringify(setup, undefined, 4)}
-    </pre>
   </div>
 }

@@ -1,13 +1,7 @@
 import { useCallback, useState } from 'react'
 
-const initTempTurnState = {
-  combatGain: 0,
-  moneyGain: 0
-}
-
 export const useGameState = () => {
   const [game, setGame] = useState(undefined)
-  const [tempTurnState, setTempTurnState] = useState(initTempTurnState)
 
   const setCurrentTurn = useCallback(updater => {
     setGame(old => {
@@ -18,18 +12,26 @@ export const useGameState = () => {
   }, [])
 
   const finishTurn = useCallback(() => {
-    setTempTurnState(initTempTurnState)
     setGame(old => {
       const currentTurn = old.turns[old.turns.length - 1]
       const isLastPlayersTurn = currentTurn.playerIndex + 1 === old.setup.players.length
       const nextPlayerIndex = isLastPlayersTurn ? 0 : currentTurn.playerIndex + 1
       const nextTurn = { ...currentTurn, playerIndex: nextPlayerIndex }
 
-      return { ...old, turns: [...old.turns, nextTurn] }
+      return {
+        ...old,
+        tempTurnState: {
+          money: 0,
+          combat: 0
+        },
+        turns: [...old.turns, nextTurn]
+      }
     })
   }, [])
 
   const startGame = useCallback((setup) => {
+    if (setup.mode !== 'Duel') throw new Error(`unsupported mode ${setup.mode}`)
+
     setGame({
       setup,
       turns: [

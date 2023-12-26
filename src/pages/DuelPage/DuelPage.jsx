@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Player } from './Player'
-import styles from './GamePage.module.sass'
+import styles from './DuelPage.module.sass'
 import { GameCtx } from 'contexts'
 
-export const GamePage = () => {
+export const DuelPage = () => {
   const {
     game: { turns, setup: { players } },
     setHitPoints,

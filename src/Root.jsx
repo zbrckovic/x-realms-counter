@@ -1,54 +1,38 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import styles from './Root.module.sass'
-import { PlayerStyle } from './player-style'
-import { GameCtx, SetupCtx } from './contexts'
+import { GameCtx } from './contexts'
 import { MainPage } from './pages/MainPage'
-import { GamePage } from './pages/GamePage'
+import { DuelPage } from './pages/DuelPage'
 import { NoMatchPage } from './pages/NoMatchPage'
 import { useGameState } from './use-game-state'
 
 export const Root = () => {
   const navigate = useNavigate()
-
-  const [setup, setSetup] = useState(() => ({
-    players: [
-      {
-        style: PlayerStyle.RED,
-        initHitPoints: 60
-      },
-      {
-        style: PlayerStyle.BLUE,
-        initHitPoints: 80
-      }
-    ]
-  }))
-  const { game, startGame, setHitPoints, finishTurn } = useGameState(setup)
+  const { game, startGame, setHitPoints, finishTurn } = useGameState()
 
   return <div className={styles.root}>
-    <SetupCtx.Provider value={{ setup, setSetup }}>
-      <GameCtx.Provider
-        value={{
-          game,
-          startGame,
-          finishTurn,
-          setHitPoints
-        }}
-      >
-        <Routes>
-          <Route
-            index
-            element={
-              <MainPage goToGamePage={() => { navigate('/game') }}/>
-            }
-          />
-          <Route
-            path="game"
-            element={game === undefined ? <Navigate replace to="/"/> : <GamePage/>}
-          />
-          <Route path="*" element={<NoMatchPage/>}/>
-        </Routes>
-      </GameCtx.Provider>
-    </SetupCtx.Provider>
+    <GameCtx.Provider
+      value={{
+        game,
+        startGame,
+        finishTurn,
+        setHitPoints
+      }}
+    >
+      <Routes>
+        <Route
+          index
+          element={
+            <MainPage goToGamePage={() => { navigate('/game') }}/>
+          }
+        />
+        <Route
+          path="game"
+          element={game === undefined ? <Navigate replace to="/"/> : <DuelPage/>}
+        />
+        <Route path="*" element={<NoMatchPage/>}/>
+      </Routes>
+    </GameCtx.Provider>
   </div>
 }
