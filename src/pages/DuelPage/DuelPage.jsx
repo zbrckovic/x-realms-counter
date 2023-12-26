@@ -4,10 +4,10 @@ import styles from './DuelPage.module.sass'
 import { GameCtx } from 'contexts'
 import { TradeCombat } from '../../components/TradeCombat'
 import classNames from 'classnames'
-import { TradeAndCombatSide } from '../../components/TradeCombat/TradeCombat'
+import { TradeAndCombatAlignment } from '../../components/TradeCombat/common'
 
-const turnClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
-const turnSide = [TradeAndCombatSide.LEFT, TradeAndCombatSide.RIGHT]
+const turnSideClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
+const tradeAndCombatAlignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
 
 export const DuelPage = () => {
   const {
@@ -45,8 +45,8 @@ export const DuelPage = () => {
       Finish Turn
     </button>
     <TradeCombat
-      className={classNames(styles.tradeAndCombat, turnClasses[playerIndex])}
-      side={turnSide[playerIndex]}
+      className={classNames(styles.tradeAndCombat, turnSideClasses[playerIndex])}
+      alignment={tradeAndCombatAlignments[playerIndex]}
     />
   </div>
 }
