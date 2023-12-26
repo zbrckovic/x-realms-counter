@@ -20,10 +20,7 @@ export const useGameState = () => {
 
       return {
         ...old,
-        tempTurnState: {
-          money: 0,
-          combat: 0
-        },
+        tempTurnState: initTempTurn,
         turns: [...old.turns, nextTurn]
       }
     })
@@ -37,7 +34,8 @@ export const useGameState = () => {
       turns: [
         {
           playerIndex: 0,
-          hitPoints: setup.players.map(player => player.initHitPoints)
+          hitPoints: setup.players.map(player => player.initHitPoints),
+          tempTurnState: initTempTurn
         }
       ]
     })
@@ -57,4 +55,9 @@ export const useGameState = () => {
     setHitPoints,
     finishTurn
   }
+}
+
+const initTempTurn = {
+  money: 0,
+  combat: 0
 }

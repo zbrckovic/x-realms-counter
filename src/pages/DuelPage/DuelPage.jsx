@@ -2,6 +2,12 @@ import React, { useContext } from 'react'
 import { Player } from './Player'
 import styles from './DuelPage.module.sass'
 import { GameCtx } from 'contexts'
+import { TradeCombat } from '../../components/TradeCombat'
+import classNames from 'classnames'
+import { TradeAndCombatSide } from '../../components/TradeCombat/TradeCombat'
+
+const turnClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
+const turnSide = [TradeAndCombatSide.LEFT, TradeAndCombatSide.RIGHT]
 
 export const DuelPage = () => {
   const {
@@ -38,5 +44,9 @@ export const DuelPage = () => {
     >
       Finish Turn
     </button>
+    <TradeCombat
+      className={classNames(styles.tradeAndCombat, turnClasses[playerIndex])}
+      side={turnSide}
+    />
   </div>
 }

@@ -2,20 +2,26 @@
   flex-grow: 1
   position: relative
   display: grid
-
-  @media (orientation: landscape)
-    grid-template-columns: 1fr 1fr
-
-  @media (orientation: portrait)
-    grid-template-rows: 1fr 1fr
+  grid-template-columns: 1fr 1fr
 
   .finishTurnButton
     height: 200px
     width: 200px
-    border-radius: 50%
     position: absolute
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
     border: 10px solid black
     cursor: pointer
+
+  .tradeAndCombat
+    position: absolute
+
+    &.rightPlayersTurn
+      right: 0
+
+    &.leftPlayersTurn
+      left: 0
+
+    bottom: 0
+    background: purple
