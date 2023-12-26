@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import styles from './MainPage.module.sass'
-import { MainCtx } from '../../contexts'
+import { GameCtx, SetupCtx } from 'contexts'
 
 export const MainPage = ({ goToGamePage }) => {
-  const { setup, startGame } = useContext(MainCtx)
+  const { setup } = useContext(SetupCtx)
+  const { startGame } = useContext(GameCtx)
 
   return <div className={styles.root}>
     <h1>Main</h1>

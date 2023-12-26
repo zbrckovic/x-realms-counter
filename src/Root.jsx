@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import styles from './Root.module.sass'
 import { PlayerStyle } from './player-style'
-import { MainCtx } from './contexts'
+import { GameCtx, SetupCtx } from './contexts'
 import { MainPage } from './pages/MainPage'
 import { GamePage } from './pages/GamePage'
 import { NoMatchPage } from './pages/NoMatchPage'
@@ -26,29 +26,29 @@ export const Root = () => {
   const { game, startGame, setHitPoints, finishTurn } = useGameState(setup)
 
   return <div className={styles.root}>
-    <MainCtx.Provider
-      value={{
-        setup,
-        setSetup,
-        game,
-        startGame,
-        finishTurn,
-        setHitPoints
-      }}
-    >
-      <Routes>
-        <Route
-          index
-          element={
-            <MainPage goToGamePage={() => { navigate('/game') }}/>
-          }
-        />
-        <Route
-          path="game"
-          element={game === undefined ? <Navigate replace to="/"/> : <GamePage/>}
-        />
-        <Route path="*" element={<NoMatchPage/>}/>
-      </Routes>
-    </MainCtx.Provider>
+    <SetupCtx.Provider value={{ setup, setSetup }}>
+      <GameCtx.Provider
+        value={{
+          game,
+          startGame,
+          finishTurn,
+          setHitPoints
+        }}
+      >
+        <Routes>
+          <Route
+            index
+            element={
+              <MainPage goToGamePage={() => { navigate('/game') }}/>
+            }
+          />
+          <Route
+            path="game"
+            element={game === undefined ? <Navigate replace to="/"/> : <GamePage/>}
+          />
+          <Route path="*" element={<NoMatchPage/>}/>
+        </Routes>
+      </GameCtx.Provider>
+    </SetupCtx.Provider>
   </div>
 }

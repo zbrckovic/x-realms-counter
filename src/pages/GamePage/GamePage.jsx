@@ -1,15 +1,14 @@
 import React, { useContext } from 'react'
 import { Player } from './Player'
 import styles from './GamePage.module.sass'
-import { MainCtx } from '../../contexts'
+import { GameCtx } from 'contexts'
 
 export const GamePage = () => {
   const {
-    setup: { players },
-    game: { turns },
+    game: { turns, setup: { players } },
     setHitPoints,
     finishTurn,
-  } = useContext(MainCtx)
+  } = useContext(GameCtx)
 
   const currentTurn = turns[turns.length - 1]
 

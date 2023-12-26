@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 import { PlayerStyle } from './player-style'
 
-export const MainCtx = createContext({
+export const SetupCtx = createContext({
   /**
    * Initial setup which is defined before the start of the match.
    */
@@ -20,7 +20,9 @@ export const MainCtx = createContext({
   setSetup: () => {
     console.log('not implemented')
   },
+})
 
+export const GameCtx = createContext({
   /**
    * Object which contains current game state. It is updated as match progresses.
    */
