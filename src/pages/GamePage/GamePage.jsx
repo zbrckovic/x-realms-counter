@@ -7,8 +7,8 @@ export const GamePage = () => {
   const {
     setup: { players },
     game: { turns },
+    setHitPoints,
     finishTurn,
-    setCurrentTurn,
   } = useContext(MainCtx)
 
   const currentTurn = turns[turns.length - 1]
@@ -19,21 +19,14 @@ export const GamePage = () => {
       players.map((player, i) => {
         const prevHitPoints = turns.length === 1 ? player.initHitPoints : turns[turns.length - 2].hitPoints[i]
 
-        console.log(player.style, prevHitPoints)
-
         return (
           <Player
             key={i}
             playerStyle={player.style}
-            className={styles.player}
             prevHitPoints={prevHitPoints}
             hitPoints={hitPoints[i]}
-            setHitPoints={(updater) => {
-              setCurrentTurn(old => {
-                const oldHitPoints = old.hitPoints[i]
-                const newHitPoints = updater(oldHitPoints)
-                return ({ ...old, hitPoints: old.hitPoints.toSpliced(i, 1, newHitPoints) })
-              })
+            setHitPoints={updater => {
+              setHitPoints(i, updater)
             }}
             hasTurn={i === playerIndex}
           />

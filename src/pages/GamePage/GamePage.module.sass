@@ -1,18 +1,13 @@
 .root
   flex-grow: 1
-  display: flex
-  gap: 16px
-  padding: 16px
   position: relative
+  display: grid
 
   @media (orientation: landscape)
-    flex-direction: row
+    grid-template-columns: 1fr 1fr
 
   @media (orientation: portrait)
-    flex-direction: column
-
-  .player
-    flex: 1 0 0
+    grid-template-rows: 1fr 1fr
 
   .finishTurnButton
     height: 200px

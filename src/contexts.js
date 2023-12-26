@@ -2,6 +2,9 @@ import { createContext } from 'react'
 import { PlayerStyle } from './player-style'
 
 export const MainCtx = createContext({
+  /**
+   * Initial setup which is defined before the start of the match.
+   */
   setup: {
     players: [
       {
@@ -17,15 +20,15 @@ export const MainCtx = createContext({
   setSetup: () => {
     console.log('not implemented')
   },
+
+  /**
+   * Object which contains current game state. It is updated as match progresses.
+   */
   game: undefined,
-  setGame: () => {
+  startGame: () => {
     console.log('not implemented')
   },
-  setCurrentTurn: () => {
-    console.log('not implemented')
-  },
-  tempTurnState: undefined,
-  setTempTurnState: () => {
+  setHitPoints: () => {
     console.log('not implemented')
   },
   finishTurn: () => {
