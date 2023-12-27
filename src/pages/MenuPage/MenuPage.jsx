@@ -7,7 +7,7 @@ export const MenuPage = ({ goToGamePage }) => {
   const { startGame } = useContext(GameCtx)
 
   return <div className={styles.root}>
-    <h1>Main Menu</h1>
+    <h1>Counter</h1>
     <button
       onClick={() => {
         startGame({
