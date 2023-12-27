@@ -1,46 +1,33 @@
+@import "styles/definitions"
+
 .root
   position: relative
   display: flex
   flex-direction: column
   opacity: 0.5
 
-  &.hasTurn
-    opacity: 1
-
   &.red
-    background-color: #FF0000
+    background-color: $player-red-color
     color: white
 
   &.blue
-    background-color: #0000FF
+    background-color: $player-blue-color
     color: white
 
-  .hitPointsLabel
+  .hitPointsLabels
     position: absolute
-    font-size: 256px
+    left: 50%
     top: 50%
-    left: 50%
     transform: translate(-50%, -50%)
-    pointer-events: none
-
-  .hitPointsDiffLabel
-    position: absolute
-    font-size: 100px
-    top: 10%
-    left: 50%
-    transform: translate(-50%, -50%)
-    pointer-events: none
 
   .incrementButton
     flex: 1 0 0
     cursor: pointer
     background: transparent
-    border: 5px solid black
 
   .decrementButton
     flex: 1 0 0
     cursor: pointer
-    border: 5px solid black
     background: transparent
 
 

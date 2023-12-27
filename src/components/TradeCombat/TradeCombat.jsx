@@ -34,7 +34,7 @@ export const TradeCombat = ({
       {trade}
     </button>
     <button
-      className={classNames(styles.mode, sideClass)}
+      className={classNames(styles.inputMode, sideClass)}
       onClick={() => {
         setInputMode(old => {
           switch (old) {
@@ -45,7 +45,9 @@ export const TradeCombat = ({
           }
         })
       }}
-    >{inputMode}</button>
+    >
+      {inputModeSymbols[inputMode]}
+    </button>
     <button
       className={classNames(styles.combat, sideClass)}
       onClick={() => setCombat(updateValue)}
@@ -53,6 +55,11 @@ export const TradeCombat = ({
       {combat}
     </button>
   </div>
+}
+
+const inputModeSymbols = {
+  [CounterMode.INCREMENT]: "+",
+  [CounterMode.DECREMENT]: "-"
 }
 
 function updateValueWithInputMode (inputMode, value) {

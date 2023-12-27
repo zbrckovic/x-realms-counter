@@ -1,14 +1,17 @@
+@import "styles/definitions.sass"
+
 .root
-  height: 250px
-  width: 250px
+  height: 300px
+  width: 300px
 
   display: grid
   grid-template-columns: 1fr 1fr
   grid-template-rows: 1fr 1fr
 
   .trade
-    background: yellow
+    background: $trade-color
     grid-row: 1
+    font-size: 40px
 
     &.left
       grid-column: 1
@@ -16,9 +19,10 @@
     &.right
       grid-column: 2
 
-  .mode
-    background: gray
+  .inputMode
+    background: $neutral-color
     grid-row: 2
+    font-size: 64px
 
     &.left
       grid-column: 1
@@ -27,8 +31,9 @@
       grid-column: 2
 
   .combat
-    background: red
+    background: $combat-color
     grid-row: 2
+    font-size: 40px
 
     &.left
       grid-column: 2

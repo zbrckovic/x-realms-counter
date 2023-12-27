@@ -2,9 +2,16 @@ import React from 'react'
 import styles from './Player.module.sass'
 import classNames from 'classnames'
 import { PlayerStyle } from '../../player-style'
+import { HitPointLabels } from './HitPointLabels'
 
-export const Player = ({ className, prevHitPoints, hitPoints, playerStyle, hasTurn, setHitPoints }) => {
-  const hitPointsDiff = hitPoints - prevHitPoints
+export const Player = ({
+  className,
+  prevHitPoints,
+  hitPoints,
+  playerStyle,
+  hasTurn,
+  setHitPoints
+}) => {
 
   return <div
     className={classNames(
@@ -14,20 +21,15 @@ export const Player = ({ className, prevHitPoints, hitPoints, playerStyle, hasTu
       className
     )}
   >
-    <label className={styles.hitPointsLabel}>{hitPoints}</label>
-    {hitPointsDiff !== 0 && <label className={styles.hitPointsDiffLabel}>{hitPointsDiff}</label>}
+    <HitPointLabels className={styles.hitPointsLabels} prevHitPoints={prevHitPoints} hitPoints={hitPoints}/>
     <button
       className={styles.incrementButton}
       onClick={() => setHitPoints(old => old + 1)}
-    >
-      Increment
-    </button>
+    />
     <button
       className={styles.decrementButton}
       onClick={() => setHitPoints(old => old - 1)}
-    >
-      decrement
-    </button>
+    />
   </div>
 }
 
