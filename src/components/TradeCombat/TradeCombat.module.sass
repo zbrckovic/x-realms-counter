@@ -1,5 +1,7 @@
 @import "styles/definitions.sass"
 
+$controls-bg-color: #1d2023
+
 .root
   height: 300px
   width: 300px
@@ -7,37 +9,67 @@
   display: grid
   grid-template-columns: 1fr 1fr
   grid-template-rows: 1fr 1fr
+  pointer-events: none
 
   .trade
-    background: $trade-color
     grid-row: 1
     font-size: 40px
+    pointer-events: auto
+    padding: 8px
+    background: $controls-bg-color
 
     &.left
       grid-column: 1
+      border-top-right-radius: 50%
 
     &.right
       grid-column: 2
+      border-top-left-radius: 50%
+
+    button
+      background: $trade-color
+      height: 100%
+      width: 100%
+      border-radius: 50%
 
   .inputMode
-    background: $neutral-color
     grid-row: 2
     font-size: 64px
+    pointer-events: auto
+    background: transparent
+    padding: 8px
+    background: $controls-bg-color
 
     &.left
       grid-column: 1
 
     &.right
       grid-column: 2
+
+    button
+      height: 100%
+      width: 100%
+      background: transparent
+      color: $hit-points-color
 
   .combat
-    background: $combat-color
     grid-row: 2
     font-size: 40px
+    pointer-events: auto
+    padding: 8px
+    background: $controls-bg-color
 
     &.left
       grid-column: 2
+      border-top-right-radius: 50%
 
     &.right
       grid-column: 1
+      border-top-left-radius: 50%
+
+    button
+      height: 100%
+      width: 100%
+      background: $combat-color
+      border-radius: 50%
 

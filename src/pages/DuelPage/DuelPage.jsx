@@ -34,7 +34,6 @@ export const DuelPage = () => {
         return (
           <Player
             key={i}
-            playerStyle={player.style}
             prevHitPoints={prevHitPoints}
             hitPoints={hitPoints[i]}
             setHitPoints={updater => {

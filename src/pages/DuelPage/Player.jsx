@@ -8,7 +8,6 @@ export const Player = ({
   className,
   prevHitPoints,
   hitPoints,
-  playerStyle,
   hasTurn,
   setHitPoints
 }) => {
@@ -17,7 +16,6 @@ export const Player = ({
     className={classNames(
       styles.root,
       { [styles.hasTurn]: hasTurn },
-      playerStyleClasses[playerStyle],
       className
     )}
   >
@@ -31,9 +29,4 @@ export const Player = ({
       onClick={() => setHitPoints(old => old - 1)}
     />
   </div>
-}
-
-const playerStyleClasses = {
-  [PlayerStyle.RED]: styles.red,
-  [PlayerStyle.BLUE]: styles.blue
 }

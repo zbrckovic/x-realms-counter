@@ -27,39 +27,43 @@ export const TradeCombat = ({
   )
 
   return <div className={classNames(styles.root, className)}>
-    <button
-      className={classNames(styles.trade, sideClass)}
-      onClick={() => setTrade(updateValue)}
-    >
-      {trade}
-    </button>
-    <button
-      className={classNames(styles.inputMode, sideClass)}
-      onClick={() => {
-        setInputMode(old => {
-          switch (old) {
-            case CounterMode.INCREMENT:
-              return CounterMode.DECREMENT
-            case CounterMode.DECREMENT:
-              return CounterMode.INCREMENT
-          }
-        })
-      }}
-    >
-      {inputModeSymbols[inputMode]}
-    </button>
-    <button
-      className={classNames(styles.combat, sideClass)}
-      onClick={() => setCombat(updateValue)}
-    >
-      {combat}
-    </button>
+    <div className={classNames(styles.trade, sideClass)}>
+      <button
+
+        onClick={() => setTrade(updateValue)}
+      >
+        {trade}
+      </button>
+    </div>
+    <div className={classNames(styles.inputMode, sideClass)}>
+      <button
+        onClick={() => {
+          setInputMode(old => {
+            switch (old) {
+              case CounterMode.INCREMENT:
+                return CounterMode.DECREMENT
+              case CounterMode.DECREMENT:
+                return CounterMode.INCREMENT
+            }
+          })
+        }}
+      >
+        {inputModeSymbols[inputMode]}
+      </button>
+    </div>
+    <div className={classNames(styles.combat, sideClass)}>
+      <button
+        onClick={() => setCombat(updateValue)}
+      >
+        {combat}
+      </button>
+    </div>
   </div>
 }
 
 const inputModeSymbols = {
-  [CounterMode.INCREMENT]: "+",
-  [CounterMode.DECREMENT]: "-"
+  [CounterMode.INCREMENT]: '+',
+  [CounterMode.DECREMENT]: '-'
 }
 
 function updateValueWithInputMode (inputMode, value) {
