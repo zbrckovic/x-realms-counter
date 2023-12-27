@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
             historyApiFallback: true
         },
         output: {
-            publicPath: '/',
+            publicPath: '/x-realms-counter',
             path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js'
         },
