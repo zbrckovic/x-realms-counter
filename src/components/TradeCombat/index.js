@@ -1,1 +1,0 @@
-export { TradeCombat } from './TradeCombat'
