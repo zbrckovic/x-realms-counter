@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { CounterMode } from './model'
 
 export const useGameState = () => {
   const [game, setGame] = useState(undefined)
@@ -20,7 +21,7 @@ export const useGameState = () => {
 
       return {
         ...old,
-        tempTurnState: initTempTurn,
+        tradeCombat: initTradeCombat,
         turns: [...old.turns, nextTurn]
       }
     })
@@ -31,11 +32,11 @@ export const useGameState = () => {
 
     setGame({
       setup,
+      tradeCombat: initTradeCombat,
       turns: [
         {
           playerIndex: 0,
-          hitPoints: setup.players.map(player => player.initHitPoints),
-          tempTurnState: initTempTurn
+          hitPoints: setup.players.map(player => player.initHitPoints)
         }
       ]
     })
@@ -49,15 +50,35 @@ export const useGameState = () => {
     })
   }, [])
 
+  const setTradeCombat = useCallback(updater => {
+    setGame(old => ({ ...old, tradeCombat: updater(old.tradeCombat) }))
+  }, [])
+
+  const setTrade = useCallback(updater => {
+    setTradeCombat(old => ({ ...old, trade: updater(old.trade) }))
+  }, [])
+
+  const setCombat = useCallback(updater => {
+    setTradeCombat(old => ({ ...old, combat: updater(old.combat) }))
+  }, [])
+
+  const setTradeCombatInputMode = useCallback(updater => {
+    setTradeCombat(old => ({ ...old, inputMode: updater(old.inputMode) }))
+  }, [])
+
   return {
     game,
     startGame,
     setHitPoints,
-    finishTurn
+    finishTurn,
+    setTrade,
+    setCombat,
+    setTradeCombatInputMode
   }
 }
 
-const initTempTurn = {
-  money: 0,
+const initTradeCombat = {
+  inputMode: CounterMode.INCREMENT,
+  trade: 0,
   combat: 0
 }

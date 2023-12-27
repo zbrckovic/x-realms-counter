@@ -9,7 +9,15 @@ import { useGameState } from './use-game-state'
 
 export const Root = () => {
   const navigate = useNavigate()
-  const { game, startGame, setHitPoints, finishTurn } = useGameState()
+  const {
+    game,
+    startGame,
+    setHitPoints,
+    finishTurn,
+    setTrade,
+    setCombat,
+    setTradeCombatInputMode
+  } = useGameState()
 
   return <div className={styles.root}>
     <GameCtx.Provider
@@ -17,7 +25,10 @@ export const Root = () => {
         game,
         startGame,
         finishTurn,
-        setHitPoints
+        setHitPoints,
+        setTrade,
+        setCombat,
+        setTradeCombatInputMode
       }}
     >
       <Routes>

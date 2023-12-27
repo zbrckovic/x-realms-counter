@@ -11,9 +11,16 @@ const tradeAndCombatAlignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAl
 
 export const DuelPage = () => {
   const {
-    game: { turns, setup: { players } },
+    game: {
+      tradeCombat,
+      turns,
+      setup: { players }
+    },
     setHitPoints,
     finishTurn,
+    setTrade,
+    setCombat,
+    setTradeCombatInputMode
   } = useContext(GameCtx)
 
   const currentTurn = turns[turns.length - 1]
@@ -47,6 +54,10 @@ export const DuelPage = () => {
     <TradeCombat
       className={classNames(styles.tradeAndCombat, turnSideClasses[playerIndex])}
       alignment={tradeAndCombatAlignments[playerIndex]}
+      setTrade={setTrade}
+      setCombat={setCombat}
+      setInputMode={setTradeCombatInputMode}
+      {...tradeCombat}
     />
   </div>
 }

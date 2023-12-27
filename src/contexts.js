@@ -13,5 +13,14 @@ export const GameCtx = createContext({
   },
   finishTurn: () => {
     console.log('not implemented')
+  },
+  setTrade: () => {
+    console.log('not implemented')
+  },
+  setCombat: () => {
+    console.log('not implemented')
+  },
+  setTradeCombatInputMode: () => {
+    console.log('not implemented')
   }
 })
