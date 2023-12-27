@@ -6,7 +6,7 @@ import './styles/main.sass'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/x-realms-counter'>
       <Root/>
     </BrowserRouter>
   </StrictMode>
