@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
             historyApiFallback: true
         },
         output: {
-            publicPath: isDevelopment ? '/' : '/x-realms-counter',
+            publicPath: isDevelopment ? '/' : '/x-realms-counter/',
             path: path.resolve(__dirname, 'dist'),
             filename: '[name].[contenthash].js'
         },
