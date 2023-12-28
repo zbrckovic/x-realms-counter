@@ -6,9 +6,12 @@ import { TradeCombat } from '../../components/TradeCombat'
 import classNames from 'classnames'
 import { TradeAndCombatAlignment } from '../../components/TradeCombat/common'
 import { FinishButton } from './FinishButton'
+import { Team } from '../../model'
 
 const turnSideClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
 const tradeAndCombatAlignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
+
+const teams = [Team.LEFT, Team.RIGHT]
 
 export const DuelPage = () => {
   const {
@@ -45,6 +48,7 @@ export const DuelPage = () => {
             }}
             hasTurn={i === playerIndex}
             playerAtTurn={playerIndex}
+            team={teams[i]}
           />
         )
       })
