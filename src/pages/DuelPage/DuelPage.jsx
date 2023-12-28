@@ -5,6 +5,7 @@ import { GameCtx } from 'contexts'
 import { TradeCombat } from '../../components/TradeCombat'
 import classNames from 'classnames'
 import { TradeAndCombatAlignment } from '../../components/TradeCombat/common'
+import { FinishTurnButton } from './FinishTurnButton'
 
 const turnSideClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
 const tradeAndCombatAlignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
@@ -44,12 +45,7 @@ export const DuelPage = () => {
         )
       })
     }
-    <button
-      className={styles.finishTurnButton}
-      onClick={finishTurn}
-    >
-      Finish Turn
-    </button>
+    <FinishTurnButton className={styles.finishTurnButton} onClick={finishTurn}/>
     <TradeCombat
       className={classNames(styles.tradeAndCombat, turnSideClasses[playerIndex])}
       alignment={tradeAndCombatAlignments[playerIndex]}
