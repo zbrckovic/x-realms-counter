@@ -1,0 +1,28 @@
+@import "styles/definitions"
+
+.root
+  border-radius: 50%
+  width: 80px
+  height: 80px
+
+  text-align: center
+  display: flex
+  justify-content: center
+  align-items: center
+
+  pointer-events: none
+
+  border: 1px solid $controls-bg-color
+
+  &.trade
+    color: $trade-color
+
+  &.combat
+    color: $combat-color
+
+  &.hitPoints
+    &.increment
+      color: $increment-color
+
+    &.decrement
+      color: $decrement-color

@@ -30,6 +30,7 @@ export const MenuPage = ({ goToGamePage }) => {
         />
       </div>
       <button
+        className={styles.startButton}
         disabled={player1HitPointsTxt === undefined || player2HitPointsTxt === undefined}
         onClick={() => {
           startGame({

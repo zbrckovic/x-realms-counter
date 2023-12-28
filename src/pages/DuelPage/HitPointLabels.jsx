@@ -2,8 +2,10 @@ import React from 'react'
 import styles from './HitPointLabels.module.sass'
 import classNames from 'classnames'
 import { PortraitMessage } from '../../components/PortraitMessage'
+import { BulkDiffIndicator } from '../../components/BulkDiffIndicator'
+import { BulkDiffIndicatorPurpose } from '../../components/BulkDiffIndicator/BulkDiffIndicator'
 
-export const HitPointLabels = ({ className, prevHitPoints, hitPoints }) => {
+export const HitPointLabels = ({ className, prevHitPoints, hitPoints, playerAtTurn }) => {
   const hitPointsDiff = hitPoints - prevHitPoints
 
   const increment = Math.max(hitPointsDiff, 0)
@@ -11,6 +13,12 @@ export const HitPointLabels = ({ className, prevHitPoints, hitPoints }) => {
 
   return <>
     <div className={classNames(styles.root, className)}>
+      <BulkDiffIndicator
+        className={styles.diff}
+        value={hitPoints}
+        purpose={BulkDiffIndicatorPurpose.HIT_POINTS}
+        resetToken={playerAtTurn}
+      />
       <label
         className={styles.increment}
         style={{ visibility: increment > 0 ? 'visible' : 'hidden' }}

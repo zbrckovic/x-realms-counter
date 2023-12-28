@@ -1,6 +1,5 @@
 @import "styles/definitions.sass"
 
-$controls-bg-color: #1d2023
 
 .root
   height: 300px
@@ -11,12 +10,22 @@ $controls-bg-color: #1d2023
   grid-template-rows: 1fr 1fr
   pointer-events: none
 
+  .diff
+    position: absolute
+
   .trade
     grid-row: 1
     font-size: 40px
     pointer-events: auto
     padding: 8px
     background: $controls-bg-color
+    position: relative
+
+    .diff
+      left: 50%
+      top: -16px
+      transform: translate(-50%, -100%)
+      pointer-events: none
 
     &.left
       grid-column: 1
@@ -53,6 +62,7 @@ $controls-bg-color: #1d2023
       color: $hit-points-color
 
   .combat
+    position: relative
     grid-row: 2
     font-size: 40px
     pointer-events: auto
@@ -63,9 +73,21 @@ $controls-bg-color: #1d2023
       grid-column: 2
       border-top-right-radius: 50%
 
+      .diff
+        top: 50%
+        right: -16px
+        transform: translate(100%, -50%)
+        pointer-events: none
+
     &.right
       grid-column: 1
       border-top-left-radius: 50%
+
+      .diff
+        top: 50%
+        left: -16px
+        transform: translate(-100%, -50%)
+        pointer-events: none
 
     button
       height: 100%

@@ -28,6 +28,7 @@ export const DuelPage = () => {
   const currentTurn = turns[turns.length - 1]
 
   const { playerIndex, hitPoints } = currentTurn
+
   return <div className={styles.root}>
     {
       players.map((player, i) => {
@@ -36,12 +37,14 @@ export const DuelPage = () => {
         return (
           <Player
             key={i}
+            playerIndex={i}
             prevHitPoints={prevHitPoints}
             hitPoints={hitPoints[i]}
             setHitPoints={updater => {
               setHitPoints(i, updater)
             }}
             hasTurn={i === playerIndex}
+            playerAtTurn={playerIndex}
           />
         )
       })
@@ -57,6 +60,7 @@ export const DuelPage = () => {
       setTrade={setTrade}
       setCombat={setCombat}
       setInputMode={setTradeCombatInputMode}
+      playerAtTurn={playerIndex}
       {...tradeCombat}
     />
   </div>

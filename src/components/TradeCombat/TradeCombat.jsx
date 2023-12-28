@@ -3,6 +3,8 @@ import classNames from 'classnames'
 import styles from './TradeCombat.module.sass'
 import { TradeAndCombatAlignment } from './common'
 import { CounterMode } from '../../model'
+import { BulkDiffIndicator } from '../BulkDiffIndicator'
+import { BulkDiffIndicatorPurpose } from '../BulkDiffIndicator/BulkDiffIndicator'
 
 const alignmentClasses = {
   [TradeAndCombatAlignment.LEFT]: styles.left,
@@ -17,7 +19,8 @@ export const TradeCombat = ({
   inputMode,
   setTrade,
   setCombat,
-  setInputMode
+  setInputMode,
+  playerAtTurn
 }) => {
   const sideClass = alignmentClasses[alignment]
 
@@ -28,8 +31,13 @@ export const TradeCombat = ({
 
   return <div className={classNames(styles.root, className)}>
     <div className={classNames(styles.trade, sideClass)}>
+      <BulkDiffIndicator
+        className={styles.diff}
+        value={trade}
+        purpose={BulkDiffIndicatorPurpose.TRADE}
+        resetToken={playerAtTurn}
+      />
       <button
-
         onClick={() => setTrade(updateValue)}
       >
         {trade}
@@ -52,6 +60,12 @@ export const TradeCombat = ({
       </button>
     </div>
     <div className={classNames(styles.combat, sideClass)}>
+      <BulkDiffIndicator
+        className={styles.diff}
+        value={combat}
+        purpose={BulkDiffIndicatorPurpose.COMBAT}
+        resetToken={playerAtTurn}
+      />
       <button
         onClick={() => setCombat(updateValue)}
       >
