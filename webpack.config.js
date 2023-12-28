@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
         output: {
             publicPath: isDevelopment ? '/' : '/x-realms-counter',
             path: path.resolve(__dirname, 'dist'),
-            filename: 'bundle.js'
+            filename: '[name].[contenthash].js'
         },
         resolve: {
             extensions: ['.js', '.jsx'],
