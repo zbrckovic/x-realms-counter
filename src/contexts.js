@@ -14,6 +14,9 @@ export const GameCtx = createContext({
   finishTurn: () => {
     console.log('not implemented')
   },
+  finishGame: () => {
+    console.log('not implemented')
+  },
   setTrade: () => {
     console.log('not implemented')
   },

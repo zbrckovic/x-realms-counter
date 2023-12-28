@@ -12,6 +12,7 @@ export const Root = () => {
   const {
     game,
     startGame,
+    finishGame,
     setHitPoints,
     finishTurn,
     setTrade,
@@ -24,6 +25,7 @@ export const Root = () => {
       value={{
         game,
         startGame,
+        finishGame,
         finishTurn,
         setHitPoints,
         setTrade,

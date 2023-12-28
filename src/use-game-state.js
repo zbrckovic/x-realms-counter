@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react'
 import { CounterMode } from './model'
+import { useLocalStorageState } from './use-local-storage-state'
 
 export const useGameState = () => {
-  const [game, setGame] = useState(undefined)
+  const [game, setGame] = useLocalStorageState('game')
 
   const setCurrentTurn = useCallback(updater => {
     setGame(old => {
@@ -42,6 +43,10 @@ export const useGameState = () => {
     })
   }, [])
 
+  const finishGame = useCallback(() => {
+    setGame(undefined)
+  }, [])
+
   const setHitPoints = useCallback((i, updater) => {
     setCurrentTurn(old => {
       const oldHitPoints = old.hitPoints[i]
@@ -69,6 +74,7 @@ export const useGameState = () => {
   return {
     game,
     startGame,
+    finishGame,
     setHitPoints,
     finishTurn,
     setTrade,
