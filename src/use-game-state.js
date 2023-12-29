@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { CounterMode } from './model'
-import { useLocalStorageState } from './use-local-storage-state'
+import { useLocalStorageState } from './utils/use-local-storage-state'
 import { Layout } from './model/setup'
 
 export const useGameState = () => {

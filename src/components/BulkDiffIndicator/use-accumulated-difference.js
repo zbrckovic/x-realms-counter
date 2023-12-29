@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useAccumulatedValue = (value, resetToken, threshold = 2000) => {
+export const useAccumulatedDifference = (value, resetToken, threshold = 2000) => {
   const [state, setState] = useState({ value, resetToken })
 
   useEffect(() => {

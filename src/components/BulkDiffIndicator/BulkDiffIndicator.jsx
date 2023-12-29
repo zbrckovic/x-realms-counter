@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import styles from './BulkDiffIndicator.module.sass'
-import { useAccumulatedValue } from './use-accumulated-value-state'
+import { useAccumulatedDifference } from './use-accumulated-difference'
 import classNames from 'classnames'
 
+/** @enum */
 export const BulkDiffIndicatorPurpose = {
   TRADE: 'TRADE',
   COMBAT: 'COMBAT',
@@ -15,8 +16,17 @@ const purposeClasses = {
   [BulkDiffIndicatorPurpose.HIT_POINTS]: styles.hitPoints
 }
 
+/**
+ * Shows how much points the player has added or removed in one go.
+ *
+ * @param className
+ * @param value - Value for which this indicator tracks changes.
+ * @param {BulkDiffIndicatorPurpose} purpose
+ * @param resetToken - When this value changes, the indicator disappears and resets.
+ * @param threshold - How long to wait before indicator disappears and resets.
+ */
 export const BulkDiffIndicator = ({ className, value, purpose, resetToken, threshold }) => {
-  const diff = useAccumulatedValue(value, resetToken, threshold)
+  const diff = useAccumulatedDifference(value, resetToken, threshold)
 
   const text = useMemo(() => {
     if (diff === undefined) return ''
