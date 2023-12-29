@@ -1,10 +1,9 @@
 import React from 'react'
 import styles from './HitPointLabels.module.sass'
 import classNames from 'classnames'
-import { PortraitMessage } from '../../components/PortraitMessage'
-import { BulkDiffIndicator } from '../../components/BulkDiffIndicator'
-import { BulkDiffIndicatorPurpose } from '../../components/BulkDiffIndicator/BulkDiffIndicator'
-import { HitPointDiffIndicatorPosition } from '../../model'
+import { PortraitMessage } from '../PortraitMessage'
+import { BulkDiffIndicator, BulkDiffIndicatorPurpose } from '../BulkDiffIndicator'
+import { HitPointDiffIndicatorPosition } from 'model'
 
 const diffIndicatorPositionClasses = {
   [HitPointDiffIndicatorPosition.TOP_LEFT]: styles.topLeft,

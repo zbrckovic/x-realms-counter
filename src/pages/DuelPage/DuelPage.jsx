@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import { Player } from './Player'
 import styles from './DuelPage.module.sass'
 import { GameCtx } from 'contexts'
-import { TradeCombat } from '../../components/TradeCombat'
+import { TradeCombat } from 'components/TradeCombat'
 import classNames from 'classnames'
-import { TradeAndCombatAlignment } from '../../components/TradeCombat/common'
+import { TradeAndCombatAlignment } from 'components/TradeCombat/common'
 import { FinishButton } from './FinishButton'
-import { HitPointDiffIndicatorPosition } from '../../model'
+import { HitPointDiffIndicatorPosition } from 'model'
+import { Player } from 'components/Player'
 
 const turnSideClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
 const tradeAndCombatAlignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
