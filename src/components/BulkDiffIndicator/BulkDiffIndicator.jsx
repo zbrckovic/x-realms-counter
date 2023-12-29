@@ -26,12 +26,11 @@ const purposeClasses = {
  * @param threshold - How long to wait before indicator disappears and resets.
  */
 export const BulkDiffIndicator = ({ className, value, purpose, resetToken, threshold }) => {
-  const diff = useAccumulatedDifference(value, resetToken, threshold)
+  const [diff, changeInProgress] = useAccumulatedDifference(value, resetToken, threshold) ?? 0
 
   const text = useMemo(() => {
-    if (diff === undefined) return ''
-    if (diff > 0) return `+${diff}`
-    return `${diff}`
+    if (diff === 0) return ''
+    return diff > 0 ? `+${diff}` : `${diff}`
   }, [diff])
 
   return (
@@ -43,13 +42,11 @@ export const BulkDiffIndicator = ({ className, value, purpose, resetToken, thres
         diff !== undefined
           ? {
             [styles.increment]: diff > 0,
-            [styles.decrement]: diff < 0
+            [styles.decrement]: diff < 0,
+            [styles.isVisible]: changeInProgress
           }
           : undefined
       )}
-      style={{
-        visibility: diff === undefined ? 'hidden' : 'visible'
-      }}
     >
       {text}
     </label>
