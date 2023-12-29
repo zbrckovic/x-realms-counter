@@ -13,11 +13,7 @@ export const Player = ({
   hitPointDiffIndicatorPosition
 }) => {
   return <div
-    className={classNames(
-      styles.root,
-      { [styles.hasTurn]: hasTurn },
-      className
-    )}
+    className={classNames(styles.root, className)}
   >
     <HitPointLabels
       className={styles.hitPointsLabels}

@@ -43,13 +43,9 @@ export const DuelPage = () => {
         return (
           <Player
             key={i}
-            playerIndex={i}
             prevHitPoints={prevHitPoints}
             hitPoints={hitPoints[i]}
-            setHitPoints={updater => {
-              setHitPoints(i, updater)
-            }}
-            hasTurn={i === playerIndex}
+            setHitPoints={updater => setHitPoints(i, updater)}
             playerAtTurn={playerIndex}
             hitPointDiffIndicatorPosition={hitPointDiffIndicatorPositions[i]}
           />
