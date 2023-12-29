@@ -1,11 +1,16 @@
+// noinspection JSUnusedLocalSymbols
+
 import { createContext } from 'react'
 
 export const GameCtx = createContext({
   /**
-   * Object which contains current game state. It is updated as the match progresses.
+   * Object which contains the current game state. It is updated as the match progresses.
    */
   game: undefined,
-  startGame: () => {
+  /**
+   * @param {GameSetup} gameSetup
+   */
+  startGame: (gameSetup) => {
     console.log('not implemented')
   },
   setHitPoints: () => {

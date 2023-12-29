@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react'
 import styles from './MenuPage.module.sass'
 import { GameCtx } from 'contexts'
-import { PlayerStyle } from '../../player-style'
 import { HitPointsInput } from '../../components/HitPointsInput'
-import { Layout } from '../../model'
+import { GameSetup, PlayerSetup } from '../../model/setup'
 
 export const MenuPage = ({ goToGamePage }) => {
   const { startGame } = useContext(GameCtx)
@@ -34,19 +33,10 @@ export const MenuPage = ({ goToGamePage }) => {
         className={styles.startButton}
         disabled={player1HitPointsTxt === undefined || player2HitPointsTxt === undefined}
         onClick={() => {
-          startGame({
-            layout: Layout.DUEL,
-            players: [
-              {
-                style: PlayerStyle.RED,
-                initHitPoints: player1HitPointsTxt
-              },
-              {
-                style: PlayerStyle.BLUE,
-                initHitPoints: player2HitPointsTxt
-              }
-            ]
-          })
+          startGame(GameSetup.duel({
+            player1: PlayerSetup.from({ initHitPoints: player1HitPointsTxt }),
+            player2: PlayerSetup.from({ initHitPoints: player2HitPointsTxt })
+          }))
           goToGamePage()
         }}
       >
