@@ -33,10 +33,10 @@ export const MenuPage = ({ goToGamePage }) => {
         className={styles.startButton}
         disabled={player1HitPointsTxt === undefined || player2HitPointsTxt === undefined}
         onClick={() => {
-          startGame(GameSetup.duel({
-            player1: PlayerSetup.from({ initHitPoints: player1HitPointsTxt }),
-            player2: PlayerSetup.from({ initHitPoints: player2HitPointsTxt })
-          }))
+          startGame(GameSetup.duel(
+            PlayerSetup.from(player1HitPointsTxt),
+            PlayerSetup.from(player2HitPointsTxt)
+          ))
           goToGamePage()
         }}
       >

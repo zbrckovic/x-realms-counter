@@ -7,9 +7,6 @@ export const GameCtx = createContext({
    * Object which contains the current game state. It is updated as the match progresses.
    */
   game: undefined,
-  /**
-   * @param {GameSetup} gameSetup
-   */
   startGame: (gameSetup) => {
     console.log('not implemented')
   },
