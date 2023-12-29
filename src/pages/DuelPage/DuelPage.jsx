@@ -68,5 +68,14 @@ export const DuelPage = () => {
       playerAtTurn={playerIndex}
       {...tradeCombat}
     />
+    <TradeCombat
+      className={classNames(styles.tradeAndCombat, turnSideClasses[playerIndex])}
+      alignment={tradeAndCombatAlignments[playerIndex]}
+      setTrade={setTrade}
+      setCombat={setCombat}
+      setInputMode={setTradeCombatInputMode}
+      playerAtTurn={playerIndex}
+      {...tradeCombat}
+    />
   </div>
 }

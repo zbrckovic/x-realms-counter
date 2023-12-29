@@ -2,29 +2,29 @@ import { useEffect, useState } from 'react'
 import { usePrevious } from '../../utils/use-previous'
 
 export const useAccumulatedDifference = (value, resetToken, threshold = 2000) => {
-  const [state, setState] = useState({ value, changeInProgress: false })
+  // Value at the start of changes.
+  const [changes, setChanges] = useState({ startValue: value, inProgress: false, resetToken })
 
-  const previousResetToken = usePrevious(resetToken)
-  const didReset = previousResetToken !== resetToken
+  const prevValue = usePrevious(value) ?? value
 
   useEffect(() => {
-    if (didReset) {
-      setState({ value, changeInProgress: false })
-    } else {
-      setState(old => {
-        const isFreshStart = !old.changeInProgress
-        return ({
-          value: isFreshStart ? value : old.value,
-          changeInProgress: true
-        })
-      })
-      const timeoutId = setTimeout(() => {
-        setState(old => ({ ...old, changeInProgress: false }))
-      }, threshold)
-
-      return () => clearTimeout(timeoutId)
+    if (changes.resetToken !== resetToken) {
+      setChanges({ startValue: value, inProgress: false, resetToken })
+      return undefined
     }
-  }, [resetToken, value])
 
-  return [value - state.value, state.changeInProgress]
+    setChanges(prev => ({
+      ...prev,
+      startValue: prev.inProgress ? prev.startValue : prevValue,
+      inProgress: prev.startValue !== value
+    }))
+
+    const timeoutId = setTimeout(() => {
+      setChanges(prev => ({ ...prev, inProgress: false }))
+    }, threshold)
+
+    return () => clearInterval(timeoutId)
+  }, [prevValue, value, resetToken, threshold, changes.resetToken])
+
+  return [value - changes.startValue, changes.inProgress]
 }
