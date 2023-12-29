@@ -10,7 +10,7 @@ export const Player = ({
   hasTurn,
   setHitPoints,
   playerAtTurn,
-  team
+  hitPointDiffIndicatorPosition
 }) => {
   return <div
     className={classNames(
@@ -25,7 +25,7 @@ export const Player = ({
       hitPoints={hitPoints}
       hasTurn={hasTurn}
       playerAtTurn={playerAtTurn}
-      team={team}
+      diffIndicatorPosition={hitPointDiffIndicatorPosition}
     />
     <button
       className={styles.incrementButton}

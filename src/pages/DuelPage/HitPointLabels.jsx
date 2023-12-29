@@ -4,14 +4,20 @@ import classNames from 'classnames'
 import { PortraitMessage } from '../../components/PortraitMessage'
 import { BulkDiffIndicator } from '../../components/BulkDiffIndicator'
 import { BulkDiffIndicatorPurpose } from '../../components/BulkDiffIndicator/BulkDiffIndicator'
-import { Team } from '../../model'
+import { HitPointDiffIndicatorPosition } from '../../model'
 
-const teamClasses = {
-  [Team.LEFT]: styles.left,
-  [Team.RIGHT]: styles.right
+const diffIndicatorPositionClasses = {
+  [HitPointDiffIndicatorPosition.TOP_LEFT]: styles.topLeft,
+  [HitPointDiffIndicatorPosition.TOP_RIGHT]: styles.topRight
 }
 
-export const HitPointLabels = ({ className, prevHitPoints, hitPoints, playerAtTurn, team }) => {
+export const HitPointLabels = ({
+  className,
+  prevHitPoints,
+  hitPoints,
+  playerAtTurn,
+  diffIndicatorPosition
+}) => {
   const hitPointsDiff = hitPoints - prevHitPoints
 
   const increment = Math.max(hitPointsDiff, 0)
@@ -20,7 +26,7 @@ export const HitPointLabels = ({ className, prevHitPoints, hitPoints, playerAtTu
   return <>
     <div className={classNames(styles.root, className)}>
       <BulkDiffIndicator
-        className={classNames(styles.diff, teamClasses[team])}
+        className={classNames(styles.diff, diffIndicatorPositionClasses[diffIndicatorPosition])}
         value={hitPoints}
         purpose={BulkDiffIndicatorPurpose.HIT_POINTS}
         resetToken={playerAtTurn}

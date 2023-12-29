@@ -3,7 +3,7 @@ export const CounterMode = {
   DECREMENT: 'DECREMENT'
 }
 
-export const Team = {
-  LEFT: 'LEFT',
-  RIGHT: 'RIGHT'
+export const HitPointDiffIndicatorPosition = {
+  TOP_LEFT: 'LEFT_TOP',
+  TOP_RIGHT: 'TOP_RIGHT'
 }
