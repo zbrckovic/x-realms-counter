@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { CounterMode } from './model'
+import { CounterMode, Layout } from './model'
 import { useLocalStorageState } from './use-local-storage-state'
 
 export const useGameState = () => {
@@ -29,7 +29,7 @@ export const useGameState = () => {
   }, [])
 
   const startGame = useCallback((setup) => {
-    if (setup.mode !== 'Duel') throw new Error(`unsupported mode ${setup.mode}`)
+    if (setup.layout !== Layout.DUEL) throw new Error(`unsupported layout ${setup.layout}`)
 
     setGame({
       setup,

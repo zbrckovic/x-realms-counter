@@ -3,6 +3,7 @@ import styles from './MenuPage.module.sass'
 import { GameCtx } from 'contexts'
 import { PlayerStyle } from '../../player-style'
 import { HitPointsInput } from '../../components/HitPointsInput'
+import { Layout } from '../../model'
 
 export const MenuPage = ({ goToGamePage }) => {
   const { startGame } = useContext(GameCtx)
@@ -34,7 +35,7 @@ export const MenuPage = ({ goToGamePage }) => {
         disabled={player1HitPointsTxt === undefined || player2HitPointsTxt === undefined}
         onClick={() => {
           startGame({
-            mode: 'Duel',
+            layout: Layout.DUEL,
             players: [
               {
                 style: PlayerStyle.RED,

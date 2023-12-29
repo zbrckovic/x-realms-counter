@@ -7,3 +7,7 @@ export const Team = {
   LEFT: 'LEFT',
   RIGHT: 'RIGHT'
 }
+
+export const Layout = {
+  DUEL: 'DUEL'
+}
