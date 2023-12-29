@@ -4,6 +4,7 @@ import { Root } from './Root'
 import { HashRouter } from 'react-router-dom'
 import '@fontsource-variable/orbitron'
 import './styles/main.sass'
+import './init-local-storage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
