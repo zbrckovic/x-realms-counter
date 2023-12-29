@@ -34,8 +34,8 @@ export const DuelPage = () => {
 
   return <div className={styles.root}>
     {
-      setup.players().map((player, i) => {
-        const prevHitPoints = turns.length === 1 ? player.initHitPoints() : turns[turns.length - 2].hitPoints[i]
+      setup.players.map((player, i) => {
+        const prevHitPoints = turns.length === 1 ? player.initHitPoints : turns[turns.length - 2].hitPoints[i]
 
         return (
           <Player

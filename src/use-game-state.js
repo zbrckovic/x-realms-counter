@@ -17,7 +17,7 @@ export const useGameState = () => {
   const finishTurn = useCallback(() => {
     setGame(old => {
       const currentTurn = old.turns[old.turns.length - 1]
-      const isLastPlayersTurn = currentTurn.playerIndex + 1 === old.setup.players().length
+      const isLastPlayersTurn = currentTurn.playerIndex + 1 === old.setup.players.length
       const nextPlayerIndex = isLastPlayersTurn ? 0 : currentTurn.playerIndex + 1
       const nextTurn = { ...currentTurn, playerIndex: nextPlayerIndex }
 
@@ -30,7 +30,7 @@ export const useGameState = () => {
   }, [])
 
   const startGame = useCallback((setup) => {
-    if (setup.layout() !== Layout.DUEL) throw new Error(`unsupported layout ${setup.layout()}`)
+    if (setup.layout !== Layout.DUEL) throw new Error(`unsupported layout ${setup.layout}`)
 
     setGame({
       setup,
@@ -38,7 +38,7 @@ export const useGameState = () => {
       turns: [
         {
           playerIndex: 0,
-          hitPoints: setup.players().map(player => player.initHitPoints())
+          hitPoints: setup.players.map(player => player.initHitPoints)
         }
       ]
     })

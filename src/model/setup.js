@@ -7,8 +7,8 @@ export class GameSetup {
     return new GameSetup({ layout: Layout.DUEL, players: [player1, player2] })
   }
 
-  #layout
-  #players
+  layout
+  players
 
   /**
    * @private
@@ -17,13 +17,9 @@ export class GameSetup {
    * @param {PlayerSetup[]} props.players
    */
   constructor ({ layout, players }) {
-    this.#layout = layout
-    this.#players = players
+    this.layout = layout
+    this.players = players
   }
-
-  layout () { return this.#layout }
-
-  players () { return this.#players }
 }
 
 /** @enum */
@@ -37,7 +33,7 @@ export class PlayerSetup {
     return new PlayerSetup(props)
   }
 
-  #initHitPoints
+  initHitPoints
 
   /**
    * @private
@@ -46,10 +42,6 @@ export class PlayerSetup {
    * start of the game.
    */
   constructor ({ initHitPoints }) {
-    this.#initHitPoints = initHitPoints
-  }
-
-  initHitPoints () {
-    return this.#initHitPoints
+    this.initHitPoints = initHitPoints
   }
 }
