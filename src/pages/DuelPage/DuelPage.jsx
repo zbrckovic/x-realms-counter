@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import styles from './DuelPage.module.sass'
 import { GameCtx } from 'contexts'
 import { TradeCombat } from 'components/TradeCombat'
@@ -8,13 +8,13 @@ import { FinishButton } from './FinishButton'
 import { HitPointDiffIndicatorPosition } from 'model'
 import { Player } from 'components/Player'
 
-const turnSideClasses = [styles.leftPlayersTurn, styles.rightPlayersTurn]
-const tradeAndCombatAlignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
-
 const hitPointDiffIndicatorPositions = [
   HitPointDiffIndicatorPosition.TOP_LEFT,
   HitPointDiffIndicatorPosition.TOP_RIGHT
 ]
+
+const sideClasses = [styles.leftPlayer, styles.rightPlayer]
+const alignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
 
 export const DuelPage = () => {
   const {
@@ -31,9 +31,8 @@ export const DuelPage = () => {
     setTradeCombatInputMode
   } = useContext(GameCtx)
 
-  const currentTurn = turns[turns.length - 1]
-
-  const { playerIndex, hitPoints } = currentTurn
+  const turnIndex = turns.length - 1
+  const currentTurn = turns[turnIndex]
 
   return <div className={styles.root}>
     {
@@ -42,40 +41,33 @@ export const DuelPage = () => {
           ? player.initHitPoints
           : turns[turns.length - 2].hitPoints[i]
 
-        return (
+        return <Fragment key={i}>
           <Player
             key={i}
             prevHitPoints={prevHitPoints}
-            hitPoints={hitPoints[i]}
+            hitPoints={currentTurn.hitPoints[i]}
             setHitPoints={updater => setHitPoints(i, updater)}
-            playerAtTurn={playerIndex}
+            playerAtTurn={currentTurn.playerIndex}
             hitPointDiffIndicatorPosition={hitPointDiffIndicatorPositions[i]}
+            turnIndex={turnIndex}
           />
-        )
+          <TradeCombat
+            className={classNames(styles.tradeAndCombat, sideClasses[i])}
+            alignment={alignments[i]}
+            setTrade={setTrade}
+            setCombat={setCombat}
+            setInputMode={setTradeCombatInputMode}
+            turnIndex={turnIndex}
+            enabled={currentTurn.playerIndex === i}
+            {...tradeCombat}
+          />
+        </Fragment>
       })
     }
     <FinishButton
       className={styles.finishTurnButton}
       onFinishTurn={finishTurn}
       onFinishGame={finishGame}
-    />
-    <TradeCombat
-      className={classNames(styles.tradeAndCombat, turnSideClasses[playerIndex])}
-      alignment={tradeAndCombatAlignments[playerIndex]}
-      setTrade={setTrade}
-      setCombat={setCombat}
-      setInputMode={setTradeCombatInputMode}
-      playerAtTurn={playerIndex}
-      {...tradeCombat}
-    />
-    <TradeCombat
-      className={classNames(styles.tradeAndCombat, turnSideClasses[playerIndex])}
-      alignment={tradeAndCombatAlignments[playerIndex]}
-      setTrade={setTrade}
-      setCombat={setCombat}
-      setInputMode={setTradeCombatInputMode}
-      playerAtTurn={playerIndex}
-      {...tradeCombat}
     />
   </div>
 }

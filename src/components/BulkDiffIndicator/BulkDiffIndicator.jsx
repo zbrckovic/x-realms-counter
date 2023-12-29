@@ -25,8 +25,8 @@ const purposeClasses = {
  * @param resetToken - When this value changes, the indicator disappears and resets.
  * @param threshold - How long to wait before indicator disappears and resets.
  */
-export const BulkDiffIndicator = ({ className, value, purpose, resetToken, threshold }) => {
-  const [diff, changeInProgress] = useAccumulatedDifference(value, resetToken, threshold) ?? 0
+export const BulkDiffIndicator = ({ className, value, purpose, turnIndex, threshold }) => {
+  const [diff, changeInProgress] = useAccumulatedDifference(value, turnIndex, threshold) ?? 0
 
   const text = useMemo(() => {
     if (diff === 0) return ''

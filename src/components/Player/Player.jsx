@@ -9,7 +9,7 @@ export const Player = ({
   hitPoints,
   hasTurn,
   setHitPoints,
-  playerAtTurn,
+  turnIndex,
   hitPointDiffIndicatorPosition
 }) => {
   return <div
@@ -20,8 +20,8 @@ export const Player = ({
       prevHitPoints={prevHitPoints}
       hitPoints={hitPoints}
       hasTurn={hasTurn}
-      playerAtTurn={playerAtTurn}
       diffIndicatorPosition={hitPointDiffIndicatorPosition}
+      turnIndex={turnIndex}
     />
     <button
       className={styles.incrementButton}

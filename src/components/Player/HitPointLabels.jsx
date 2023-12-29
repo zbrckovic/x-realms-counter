@@ -14,8 +14,8 @@ export const HitPointLabels = ({
   className,
   prevHitPoints,
   hitPoints,
-  playerAtTurn,
-  diffIndicatorPosition
+  diffIndicatorPosition,
+  turnIndex
 }) => {
   const hitPointsDiff = hitPoints - prevHitPoints
 
@@ -28,7 +28,7 @@ export const HitPointLabels = ({
         className={classNames(styles.diff, diffIndicatorPositionClasses[diffIndicatorPosition])}
         value={hitPoints}
         purpose={BulkDiffIndicatorPurpose.HIT_POINTS}
-        resetToken={playerAtTurn}
+        turnIndex={turnIndex}
       />
       <label
         className={styles.increment}
