@@ -1,32 +1,28 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-export const useLocalStorageState = (key) => {
-  const [state, setReactState] = useState(() => getFromLocalStorage(key))
+type ReturnValue<T> = [T | undefined, Dispatch<SetStateAction<T | undefined>>]
 
-  const setState = useCallback((updaterOrValue) => {
-    setReactState(
-      old => typeof updaterOrValue === 'function' ? updaterOrValue(old) : updaterOrValue
-    )
-  }, [])
+export const useLocalStorageState = <T>(key: string): ReturnValue<T> => {
+    const [state, setState] = useState<T | undefined>(() => getFromLocalStorage<T>(key))
 
-  useEffect(() => {
-    setToLocalStorage(key, state)
-  }, [key, state])
+    useEffect(() => {
+        setToLocalStorage(key, state)
+    }, [key, state])
 
-  return [state, setState]
+    return [state, setState]
 }
 
-function getFromLocalStorage (key) {
-  const json = localStorage.getItem(key)
-  if (json === null) return undefined
-  return JSON.parse(json)
+function getFromLocalStorage<T>(key: string): T | undefined {
+    const json = localStorage.getItem(key)
+    if (json === null) return undefined
+    return JSON.parse(json)
 }
 
-function setToLocalStorage (key, value) {
-  if (value === undefined || value === null) {
-    localStorage.removeItem(key)
-  } else {
-    const json = JSON.stringify(value)
-    localStorage.setItem(key, json)
-  }
+function setToLocalStorage<T>(key: string, value: T) {
+    if (value === undefined || value === null) {
+        localStorage.removeItem(key)
+    } else {
+        const json = JSON.stringify(value)
+        localStorage.setItem(key, json)
+    }
 }

@@ -1,9 +1,10 @@
+import { CounterMode } from 'model'
+import { Game } from 'model/game'
+import { GameSetup } from 'model/setup'
 import { createContext, SetStateAction } from 'react'
-import { GameSetup } from "./model/setup";
-import { CounterMode } from "./model";
 
 export interface GameCtx {
-    readonly game?: GameSetup
+    readonly game?: Game
     readonly startGame: (setup: GameSetup) => void
     readonly setHitPoints: (playerIndex: number, action: SetStateAction<number>) => void
     readonly finishTurn: () => void

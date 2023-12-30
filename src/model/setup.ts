@@ -4,7 +4,7 @@ export interface GameSetup {
 }
 
 export const GameSetup = {
-    duel(player1: PlayerSetup, player2: PlayerSetup) {
+    duel(player1: PlayerSetup, player2: PlayerSetup): GameSetup {
         return { layout: Layout.DUEL, players: [player1, player2] }
     }
 }
