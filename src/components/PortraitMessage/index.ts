@@ -1,1 +1,1 @@
-export { PortraitMessage } from './PortraitMessage'
+export {PortraitMessage} from './PortraitMessage'

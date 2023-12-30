@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 
 type ReturnValue<T> = [T | undefined, Dispatch<SetStateAction<T | undefined>>]
 

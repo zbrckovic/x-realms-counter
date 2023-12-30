@@ -5,7 +5,7 @@ export interface GameSetup {
 
 export const GameSetup = {
     duel(player1: PlayerSetup, player2: PlayerSetup): GameSetup {
-        return { layout: Layout.DUEL, players: [player1, player2] }
+        return {layout: Layout.DUEL, players: [player1, player2]}
     }
 }
 
@@ -19,7 +19,7 @@ export const PlayerSetup = {
      * start of the game.
      */
     from(initHitPoints: number): PlayerSetup {
-        return { initHitPoints }
+        return {initHitPoints}
     }
 }
 

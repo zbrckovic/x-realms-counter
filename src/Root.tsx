@@ -1,14 +1,14 @@
-import { GameCtx } from 'contexts'
-import { DuelPage } from 'pages/DuelPage'
-import { MenuPage } from 'pages/MenuPage'
-import { NoMatchPage } from 'pages/NoMatchPage'
-import React from 'react'
-import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
-import { useGameState } from 'use-game-state'
+import {GameCtx} from 'contexts'
+import {DuelPage} from 'pages/DuelPage'
+import {MenuPage} from 'pages/MenuPage'
+import {NoMatchPage} from 'pages/NoMatchPage'
+import React, {FC} from 'react'
+import {FullScreen, useFullScreenHandle} from 'react-full-screen'
+import {Navigate, Route, Routes, useNavigate} from 'react-router-dom'
+import {useGameState} from 'use-game-state'
 import styles from './Root.module.sass'
 
-export const Root = () => {
+export const Root: FC = () => {
     const fullScreenHandle = useFullScreenHandle()
     const navigate = useNavigate()
     const {
@@ -22,13 +22,13 @@ export const Root = () => {
         setTradeCombatInputMode
     } = useGameState()
 
-    return <div className={ styles.root }>
-        <button className={ styles.fullscreenButton } onClick={ fullScreenHandle.enter }>
+    return <div className={styles.root}>
+        <button className={styles.fullscreenButton} onClick={fullScreenHandle.enter}>
             fullscreen
         </button>
-        <FullScreen className={ styles.fullscreen } handle={ fullScreenHandle }>
+        <FullScreen className={styles.fullscreen} handle={fullScreenHandle}>
             <GameCtx.Provider
-                value={ {
+                value={{
                     game,
                     startGame,
                     finishGame,
@@ -37,20 +37,20 @@ export const Root = () => {
                     setTrade,
                     setCombat,
                     setTradeCombatInputMode
-                } }
+                }}
             >
                 <Routes>
                     <Route
                         index
                         element={
-                            <MenuPage goToGamePage={ () => { navigate('/game') } }/>
+                            <MenuPage goToGamePage={() => { navigate('/game') }}/>
                         }
                     />
                     <Route
                         path="game"
-                        element={ game === undefined ? <Navigate replace to="/"/> : <DuelPage/> }
+                        element={game === undefined ? <Navigate replace to="/"/> : <DuelPage/>}
                     />
-                    <Route path="*" element={ <NoMatchPage/> }/>
+                    <Route path="*" element={<NoMatchPage/>}/>
                 </Routes>
             </GameCtx.Provider>
         </FullScreen>

@@ -1,22 +1,30 @@
-import React from 'react'
-import styles from './HitPointLabels.module.sass'
 import classNames from 'classnames'
-import {PortraitMessage} from '../PortraitMessage'
-import {BulkDiffIndicator, BulkDiffIndicatorPurpose} from '../BulkDiffIndicator'
 import {HitPointDiffIndicatorPosition} from 'model'
+import React, {FC} from 'react'
+import {BulkDiffIndicator, BulkDiffIndicatorPurpose} from '../BulkDiffIndicator'
+import {PortraitMessage} from '../PortraitMessage'
+import styles from './HitPointLabels.module.sass'
 
 const diffIndicatorPositionClasses = {
     [HitPointDiffIndicatorPosition.TOP_LEFT]: styles.topLeft,
     [HitPointDiffIndicatorPosition.TOP_RIGHT]: styles.topRight
 }
 
-export const HitPointLabels = ({
-                                   className,
-                                   prevHitPoints,
-                                   hitPoints,
-                                   diffIndicatorPosition,
-                                   turnIndex
-                               }) => {
+interface Props {
+    className?: string
+    prevHitPoints: number
+    hitPoints: number
+    diffIndicatorPosition: HitPointDiffIndicatorPosition
+    turnIndex: number
+}
+
+export const HitPointLabels: FC<Props> = ({
+                                              className,
+                                              prevHitPoints,
+                                              hitPoints,
+                                              diffIndicatorPosition,
+                                              turnIndex
+                                          }) => {
     const hitPointsDiff = hitPoints - prevHitPoints
 
     const increment = Math.max(hitPointsDiff, 0)

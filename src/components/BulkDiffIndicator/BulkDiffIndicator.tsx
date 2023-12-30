@@ -1,54 +1,61 @@
-import React, { useMemo } from 'react'
-import styles from './BulkDiffIndicator.module.sass'
-import { useAccumulatedDifference } from './use-accumulated-difference'
 import classNames from 'classnames'
+import React, {FC, useMemo} from 'react'
+import styles from './BulkDiffIndicator.module.sass'
+import {useAccumulatedDifference} from './use-accumulated-difference'
 
-/** @enum */
-export const BulkDiffIndicatorPurpose = {
-  TRADE: 'TRADE',
-  COMBAT: 'COMBAT',
-  HIT_POINTS: 'HIT_POINTS'
+export enum BulkDiffIndicatorPurpose {
+    TRADE = 'TRADE',
+    COMBAT = 'COMBAT',
+    HIT_POINTS = 'HIT_POINTS'
 }
 
 const purposeClasses = {
-  [BulkDiffIndicatorPurpose.TRADE]: styles.trade,
-  [BulkDiffIndicatorPurpose.COMBAT]: styles.combat,
-  [BulkDiffIndicatorPurpose.HIT_POINTS]: styles.hitPoints
+    [BulkDiffIndicatorPurpose.TRADE]: styles.trade,
+    [BulkDiffIndicatorPurpose.COMBAT]: styles.combat,
+    [BulkDiffIndicatorPurpose.HIT_POINTS]: styles.hitPoints
 }
 
-/**
- * Shows how much points the player has added or removed in one go.
- *
- * @param className
- * @param value - Value for which this indicator tracks changes.
- * @param {BulkDiffIndicatorPurpose} purpose
- * @param resetToken - When this value changes, the indicator disappears and resets.
- * @param threshold - How long to wait before indicator disappears and resets.
- */
-export const BulkDiffIndicator = ({ className, value, purpose, turnIndex, threshold }) => {
-  const [diff, changeInProgress] = useAccumulatedDifference(value, turnIndex, threshold) ?? 0
+interface Props {
+    className?: string
+    // Value for which this indicator tracks changes.
+    value: number
+    purpose: BulkDiffIndicatorPurpose
+    turnIndex: number
+    // How long to wait before indicator disappears and resets.
+    threshold?: number
+}
 
-  const text = useMemo(() => {
-    if (diff === 0) return ''
-    return diff > 0 ? `+${diff}` : `${diff}`
-  }, [diff])
+// Shows how much points the player has added or removed in one go.
+export const BulkDiffIndicator: FC<Props> = ({
+                                                 className,
+                                                 value,
+                                                 purpose,
+                                                 turnIndex,
+                                                 threshold
+                                             }) => {
+    const [diff = 0, changeInProgress] = useAccumulatedDifference(value, turnIndex, threshold)
 
-  return (
-    <label
-      className={classNames(
-        styles.root,
-        className,
-        purposeClasses[purpose],
-        diff !== undefined
-          ? {
-            [styles.increment]: diff > 0,
-            [styles.decrement]: diff < 0,
-            [styles.isVisible]: changeInProgress
-          }
-          : undefined
-      )}
-    >
-      {text}
-    </label>
-  )
+    const text = useMemo(() => {
+        if (diff === 0) return ''
+        return diff > 0 ? `+${diff}` : `${diff}`
+    }, [diff])
+
+    return (
+        <label
+            className={classNames(
+                styles.root,
+                className,
+                purposeClasses[purpose],
+                diff !== undefined
+                    ? {
+                        [styles.increment]: diff > 0,
+                        [styles.decrement]: diff < 0,
+                        [styles.isVisible]: changeInProgress
+                    }
+                    : undefined
+            )}
+        >
+            {text}
+        </label>
+    )
 }

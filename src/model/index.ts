@@ -3,7 +3,7 @@ export enum CounterMode {
     DECREMENT = 'DECREMENT'
 }
 
-export const HitPointDiffIndicatorPosition = {
-    TOP_LEFT: 'LEFT_TOP',
-    TOP_RIGHT: 'TOP_RIGHT'
+export enum HitPointDiffIndicatorPosition {
+    TOP_LEFT = 'LEFT_TOP',
+    TOP_RIGHT = 'TOP_RIGHT'
 }

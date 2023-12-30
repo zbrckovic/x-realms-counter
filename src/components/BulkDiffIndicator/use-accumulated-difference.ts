@@ -1,30 +1,36 @@
-import { useEffect, useState } from 'react'
-import { usePrevious } from '../../utils/use-previous'
+import {useEffect, useState} from 'react'
+import {usePrevious} from 'utils/use-previous'
 
-export const useAccumulatedDifference = (value, resetToken, threshold = 2000) => {
-  // Value at the start of changes.
-  const [changes, setChanges] = useState({ startValue: value, inProgress: false, resetToken })
+type Result = [number | undefined, boolean]
 
-  const prevValue = usePrevious(value) ?? value
+export const useAccumulatedDifference = (
+    value: number,
+    resetToken: unknown,
+    threshold = 2000
+): Result => {
+    // Value at the start of changes.
+    const [changes, setChanges] = useState({startValue: value, inProgress: false, resetToken})
 
-  useEffect(() => {
-    if (changes.resetToken !== resetToken) {
-      setChanges({ startValue: value, inProgress: false, resetToken })
-      return undefined
-    }
+    const prevValue = usePrevious(value) ?? value
 
-    setChanges(prev => ({
-      ...prev,
-      startValue: prev.inProgress ? prev.startValue : prevValue,
-      inProgress: prev.startValue !== value
-    }))
+    useEffect(() => {
+        if (changes.resetToken !== resetToken) {
+            setChanges({startValue: value, inProgress: false, resetToken})
+            return undefined
+        }
 
-    const timeoutId = setTimeout(() => {
-      setChanges(prev => ({ ...prev, inProgress: false }))
-    }, threshold)
+        setChanges(prev => ({
+            ...prev,
+            startValue: prev.inProgress ? prev.startValue : prevValue,
+            inProgress: prev.startValue !== value
+        }))
 
-    return () => clearInterval(timeoutId)
-  }, [prevValue, value, resetToken, threshold, changes.resetToken])
+        const timeoutId = setTimeout(() => {
+            setChanges(prev => ({...prev, inProgress: false}))
+        }, threshold)
 
-  return [value - changes.startValue, changes.inProgress]
+        return () => clearInterval(timeoutId)
+    }, [prevValue, value, resetToken, threshold, changes.resetToken])
+
+    return [value - changes.startValue, changes.inProgress]
 }

@@ -1,9 +1,9 @@
-import { CounterMode } from 'model'
-import { Game, TradeCombat, Turn } from 'model/game'
-import { GameSetup, Layout } from 'model/setup'
-import { SetStateAction, useCallback } from 'react'
-import { applyAction } from 'utils/misc'
-import { useLocalStorageState } from 'utils/use-local-storage-state'
+import {CounterMode} from 'model'
+import {Game, TradeCombat, Turn} from 'model/game'
+import {GameSetup, Layout} from 'model/setup'
+import {SetStateAction, useCallback} from 'react'
+import {applyAction} from 'utils/misc'
+import {useLocalStorageState} from 'utils/use-local-storage-state'
 
 export const useGameState = () => {
     const [game, setGame] = useLocalStorageState<Game | undefined>('game')
@@ -36,7 +36,7 @@ export const useGameState = () => {
     }, [])
 
     const startGame = useCallback((setup: GameSetup) => {
-        if (setup.layout !== Layout.DUEL) throw new Error(`unsupported layout ${ setup.layout }`)
+        if (setup.layout !== Layout.DUEL) throw new Error(`unsupported layout ${setup.layout}`)
 
         setGame({
             setup,

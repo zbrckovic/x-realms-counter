@@ -1,23 +1,27 @@
-import React, { useCallback } from 'react'
+import classNames from 'classnames'
+import React, {FC, useCallback} from 'react'
+import {useLongPress} from 'use-long-press'
+import {LongPressCallback} from 'use-long-press/lib/use-long-press.types'
 
 import styles from './FinishButton.module.sass'
-import classNames from 'classnames'
-import { useLongPress } from 'use-long-press'
 
-export const FinishButton = ({ className, onFinishGame, onFinishTurn }) => {
-  const onLongPress = useCallback(onFinishGame, [onFinishGame])
-  const onCancel = useCallback((event, { reason }) => {
-    if (reason === 'cancelled-by-release') {
-      onFinishTurn()
-    }
-  }, [onFinishTurn])
+interface Props {
+    className?: string
+    onFinishGame: () => void
+    onFinishTurn: () => void
+}
 
-  const bind = useLongPress(onLongPress, { onCancel, threshold: 2000 })
+export const FinishButton: FC<Props> = ({className, onFinishGame, onFinishTurn}) => {
+    const onLongPress = useCallback(onFinishGame, [onFinishGame])
+    const onCancel = useCallback<LongPressCallback>((event: any, {reason}) => {
+        if (reason === 'cancelled-by-release') {
+            onFinishTurn()
+        }
+    }, [onFinishTurn])
 
-  return <button
-    className={classNames(styles.root, className)}
-    {...bind()}
-  >
-    Finish Turn
-  </button>
+    const bind = useLongPress(onLongPress, {onCancel, threshold: 2000})
+
+    return <button className={classNames(styles.root, className)} {...bind()}>
+        Finish Turn
+    </button>
 }

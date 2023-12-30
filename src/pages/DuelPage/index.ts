@@ -1,1 +1,1 @@
-export { DuelPage } from './DuelPage'
+export {DuelPage} from './DuelPage'
