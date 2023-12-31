@@ -4,6 +4,8 @@ import React, { Dispatch, FC, SetStateAction, useCallback } from 'react'
 import { BulkDiffIndicator, BulkDiffIndicatorPurpose } from '../BulkDiffIndicator'
 import { TradeAndCombatAlignment } from './common'
 import styles from './TradeCombat.module.sass'
+import { TradeButton } from 'components/TradeCombat/TradeButton'
+import { CombatButton } from 'components/TradeCombat/CombatButton'
 
 const alignmentClasses = {
     [TradeAndCombatAlignment.LEFT]: styles.left,
@@ -52,11 +54,10 @@ export const TradeCombat: FC<Props> = ({
                 purpose={BulkDiffIndicatorPurpose.TRADE}
                 turnIndex={turnIndex}
             />
-            <button
+            <TradeButton
+                trade={trade}
                 onClick={() => setTrade(updateValue)}
-            >
-                {trade}
-            </button>
+            />
         </div>
         <div className={classNames(styles.inputMode, sideClass)}>
             <button
@@ -81,11 +82,10 @@ export const TradeCombat: FC<Props> = ({
                 purpose={BulkDiffIndicatorPurpose.COMBAT}
                 turnIndex={turnIndex}
             />
-            <button
+            <CombatButton
                 onClick={() => setCombat(updateValue)}
-            >
-                {combat}
-            </button>
+                combat={combat}
+            />
         </div>
     </div>
 }
