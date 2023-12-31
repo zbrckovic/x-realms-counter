@@ -1,1 +1,1 @@
-export {TradeCombat} from './TradeCombat'
+export { TradeCombat } from './TradeCombat'

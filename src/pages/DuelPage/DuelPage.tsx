@@ -1,12 +1,12 @@
 import classNames from 'classnames'
-import {Player} from 'components/Player'
-import {TradeCombat} from 'components/TradeCombat'
-import {TradeAndCombatAlignment} from 'components/TradeCombat/common'
-import {GameCtx} from 'contexts'
-import {HitPointDiffIndicatorPosition} from 'model'
-import React, {Fragment, useContext} from 'react'
+import { Player } from 'components/Player'
+import { TradeCombat } from 'components/TradeCombat'
+import { TradeAndCombatAlignment } from 'components/TradeCombat/common'
+import { GameCtx } from 'contexts'
+import { HitPointDiffIndicatorPosition } from 'model'
+import React, { Fragment, useContext } from 'react'
 import styles from './DuelPage.module.sass'
-import {FinishButton} from './FinishButton'
+import { FinishButton } from './FinishButton'
 
 const hitPointDiffIndicatorPositions = [
     HitPointDiffIndicatorPosition.TOP_LEFT,
@@ -29,7 +29,7 @@ export const DuelPage = () => {
 
     if (game === undefined) throw new Error('game is undefined')
 
-    const {setup, tradeCombat, turns} = game
+    const { setup, tradeCombat, turns } = game
 
     const turnIndex = turns.length - 1
     const currentTurn = turns[turnIndex]

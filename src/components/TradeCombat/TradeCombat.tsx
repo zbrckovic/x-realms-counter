@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import {CounterMode} from 'model'
-import React, {Dispatch, FC, SetStateAction, useCallback} from 'react'
-import {BulkDiffIndicator, BulkDiffIndicatorPurpose} from '../BulkDiffIndicator'
-import {TradeAndCombatAlignment} from './common'
+import { CounterMode } from 'model'
+import React, { Dispatch, FC, SetStateAction, useCallback } from 'react'
+import { BulkDiffIndicator, BulkDiffIndicatorPurpose } from '../BulkDiffIndicator'
+import { TradeAndCombatAlignment } from './common'
 import styles from './TradeCombat.module.sass'
 
 const alignmentClasses = {

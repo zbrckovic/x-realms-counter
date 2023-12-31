@@ -1,15 +1,16 @@
-import {HitPointsInput} from 'components/HitPointsInput'
-import {GameCtx} from 'contexts'
-import {GameSetup, PlayerSetup} from 'model/setup'
-import React, {FC, useContext, useState} from 'react'
+import { HitPointsInput } from 'components/HitPointsInput'
+import { GameCtx } from 'contexts'
+import { GameSetup, PlayerSetup } from 'model/setup'
+import React, { FC, useContext, useState } from 'react'
 import styles from './MenuPage.module.sass'
+import { Version } from 'components/VersionIndicator'
 
 interface Props {
     goToGamePage: () => void
 }
 
-export const MenuPage: FC<Props> = ({goToGamePage}) => {
-    const {startGame} = useContext(GameCtx)
+export const MenuPage: FC<Props> = ({ goToGamePage }) => {
+    const { startGame } = useContext(GameCtx)
 
     const [player1HitPointsTxt, setPlayer1HitPoints] = useState('50')
     const [player2HitPointsTxt, setPlayer2HitPoints] = useState('50')
@@ -46,6 +47,7 @@ export const MenuPage: FC<Props> = ({goToGamePage}) => {
             >
                 Start Game
             </button>
+            <Version className={styles.version}/>
         </div>
     </div>
 }

@@ -1,13 +1,12 @@
-const prevVersion = localStorage.getItem('VERSION') ?? undefined
-const version = process.env.VERSION
+import { config } from 'config'
 
-if (version === undefined) throw new Error('VERSION env var not set')
+const storedVersion = localStorage.getItem('VERSION') ?? undefined
 
-if (prevVersion !== version) {
+if (storedVersion !== config.version) {
     // Migration not supported at such early stage of development. And due to the nature of the app,
     // maybe never will be.
-    console.log('Clearing local storage due to version mismatch.')
+    console.log(`Clearing local storage due to version mismatch: ${storedVersion} -> ${config.version}`)
     localStorage.clear()
 }
 
-localStorage.setItem('VERSION', version)
+localStorage.setItem('VERSION', config.version)

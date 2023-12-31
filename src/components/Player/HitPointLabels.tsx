@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import {HitPointDiffIndicatorPosition} from 'model'
-import React, {FC} from 'react'
-import {BulkDiffIndicator, BulkDiffIndicatorPurpose} from '../BulkDiffIndicator'
-import {PortraitMessage} from '../PortraitMessage'
+import { HitPointDiffIndicatorPosition } from 'model'
+import React, { FC } from 'react'
+import { BulkDiffIndicator, BulkDiffIndicatorPurpose } from '../BulkDiffIndicator'
+import { PortraitMessage } from '../PortraitMessage'
 import styles from './HitPointLabels.module.sass'
 
 const diffIndicatorPositionClasses = {
@@ -40,14 +40,14 @@ export const HitPointLabels: FC<Props> = ({
             />
             <label
                 className={styles.increment}
-                style={{visibility: increment > 0 ? 'visible' : 'hidden'}}
+                style={{ visibility: increment > 0 ? 'visible' : 'hidden' }}
             >
                 +{increment}
             </label>
             <label className={styles.hitPoints}>{hitPoints}</label>
             <label
                 className={styles.decrement}
-                style={{visibility: decrement < 0 ? 'visible' : 'hidden'}}
+                style={{ visibility: decrement < 0 ? 'visible' : 'hidden' }}
             >
                 {decrement}
             </label>

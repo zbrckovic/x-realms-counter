@@ -1,1 +1,1 @@
-export {HitPointsInput} from './HitPointsInput'
+export { HitPointsInput } from './HitPointsInput'

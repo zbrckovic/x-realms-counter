@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import React, {FC, useMemo} from 'react'
+import React, { FC, useMemo } from 'react'
 import styles from './BulkDiffIndicator.module.sass'
-import {useAccumulatedDifference} from './use-accumulated-difference'
+import { useAccumulatedDifference } from './use-accumulated-difference'
 
 export enum BulkDiffIndicatorPurpose {
     TRADE = 'TRADE',

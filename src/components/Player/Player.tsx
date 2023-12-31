@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import {HitPointDiffIndicatorPosition} from 'model'
-import React, {Dispatch, FC, SetStateAction} from 'react'
-import {HitPointLabels} from './HitPointLabels'
+import { HitPointDiffIndicatorPosition } from 'model'
+import React, { Dispatch, FC, SetStateAction } from 'react'
+import { HitPointLabels } from './HitPointLabels'
 import styles from './Player.module.sass'
 
 interface Props {

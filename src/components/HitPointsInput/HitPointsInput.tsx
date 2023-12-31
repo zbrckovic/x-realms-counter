@@ -1,5 +1,5 @@
-import React, {FC} from 'react'
-import {NumericFormat} from 'react-number-format'
+import React, { FC } from 'react'
+import { NumericFormat } from 'react-number-format'
 
 const MIN_HIT_POINTS = 0
 const MAX_HIT_POINTS = 320
@@ -10,7 +10,7 @@ interface Props {
     onChange: (value: string) => void
 }
 
-export const HitPointsInput: FC<Props> = ({className, value, onChange}) =>
+export const HitPointsInput: FC<Props> = ({ className, value, onChange }) =>
     <NumericFormat
         className={className}
         value={value}

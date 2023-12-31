@@ -1,6 +1,8 @@
 @import "styles/definitions"
 
 .root
+  position: relative
+
   flex: 1 0 0
 
   color: $text-color
@@ -9,6 +11,11 @@
   flex-direction: column
   align-items: center
   justify-content: center
+
+  .version
+    position: absolute
+    bottom: 16px
+    right: 16px
 
   .container
     display: flex

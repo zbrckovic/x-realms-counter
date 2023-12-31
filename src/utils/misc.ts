@@ -1,4 +1,4 @@
-import {SetStateAction} from 'react'
+import { SetStateAction } from 'react'
 
 export const applyAction = <T>(action: SetStateAction<T>, prevValue: T): T => {
     if (typeof action === 'function') {

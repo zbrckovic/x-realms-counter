@@ -1,1 +1,1 @@
-export {BulkDiffIndicator, BulkDiffIndicatorPurpose} from './BulkDiffIndicator'
+export { BulkDiffIndicator, BulkDiffIndicatorPurpose } from './BulkDiffIndicator'

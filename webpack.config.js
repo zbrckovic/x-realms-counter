@@ -80,6 +80,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin(),
       new webpack.DefinePlugin({
         'process.env.VERSION': JSON.stringify(package.version),
+        'process.env.MODE': JSON.stringify(mode),
       })
     ]
   })

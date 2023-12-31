@@ -1,7 +1,7 @@
-import {CounterMode} from 'model'
-import {Game} from 'model/game'
-import {GameSetup} from 'model/setup'
-import {createContext, Dispatch, SetStateAction} from 'react'
+import { CounterMode } from 'model'
+import { Game } from 'model/game'
+import { GameSetup } from 'model/setup'
+import { createContext, Dispatch, SetStateAction } from 'react'
 
 export interface GameCtx {
     readonly game?: Game

@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
 import styles from './PortraitMessage.module.sass'
 
 export const PortraitMessage: FC = () => (
