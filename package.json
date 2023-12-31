@@ -1,6 +1,6 @@
 {
   "name": "x-realms-counter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An application for tracking points in card games Star Realms and Hero Realms.",
   "main": "index.js",
   "scripts": {
