@@ -1,5 +1,7 @@
+import classNames from 'classnames'
 import React, { FC } from 'react'
 import { NumericFormat } from 'react-number-format'
+import styles from './HitPointsInput.module.sass'
 
 const MIN_HIT_POINTS = 0
 const MAX_HIT_POINTS = 320
@@ -12,7 +14,7 @@ interface Props {
 
 export const HitPointsInput: FC<Props> = ({ className, value, onChange }) =>
     <NumericFormat
-        className={className}
+        className={classNames(styles.root, className)}
         value={value}
         allowLeadingZeros={false}
         allowNegative={false}
