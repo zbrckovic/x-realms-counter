@@ -1,8 +1,7 @@
-import { GameCtx } from 'contexts'
 import { DuelPage } from 'pages/DuelPage'
 import { MenuPage } from 'pages/MenuPage'
 import { NoMatchPage } from 'pages/NoMatchPage'
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { useGameState } from 'use-game-state'
@@ -22,37 +21,42 @@ export const Root: FC = () => {
         setTradeCombatInputMode
     } = useGameState()
 
+    const handleGoToGamePage = useCallback(() => {
+        navigate('/game')
+    }, [navigate])
+
     return <div className={styles.root}>
         <button className={styles.fullscreenButton} onClick={fullScreenHandle.enter}>
-            fullscreen
+            Fullscreen
         </button>
         <FullScreen className={styles.fullscreen} handle={fullScreenHandle}>
-            <GameCtx.Provider
-                value={{
-                    game,
-                    startGame,
-                    finishGame,
-                    finishTurn,
-                    setHitPoints,
-                    setTrade,
-                    setCombat,
-                    setTradeCombatInputMode
-                }}
-            >
-                <Routes>
-                    <Route
-                        index
-                        element={
-                            <MenuPage goToGamePage={() => { navigate('/game') }}/>
-                        }
-                    />
-                    <Route
-                        path="game"
-                        element={game === undefined ? <Navigate replace to="/"/> : <DuelPage/>}
-                    />
-                    <Route path="*" element={<NoMatchPage/>}/>
-                </Routes>
-            </GameCtx.Provider>
+            <Routes>
+                <Route
+                    index
+                    element={
+                        <MenuPage
+                            goToGamePage={handleGoToGamePage}
+                            startGame={startGame}/>
+                    }
+                />
+                <Route
+                    path="game"
+                    element={
+                        game === undefined
+                            ? <Navigate replace to="/"/>
+                            : <DuelPage
+                                game={game}
+                                finishGame={finishGame}
+                                finishTurn={finishTurn}
+                                setHitPoints={setHitPoints}
+                                setTrade={setTrade}
+                                setCombat={setCombat}
+                                setTradeCombatInputMode={setTradeCombatInputMode}
+                            />
+                    }
+                />
+                <Route path="*" element={<NoMatchPage/>}/>
+            </Routes>
         </FullScreen>
     </div>
 }

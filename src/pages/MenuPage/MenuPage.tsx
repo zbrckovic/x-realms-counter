@@ -1,17 +1,15 @@
 import { HitPointsInput } from 'components/HitPointsInput'
-import { GameCtx } from 'contexts'
-import { GameSetup, PlayerSetup } from 'model/setup'
-import React, { FC, useContext, useState } from 'react'
+import React, { FC, useState } from 'react'
 import styles from './MenuPage.module.sass'
 import { Version } from 'components/VersionIndicator'
+import { createDuel, GameSetup } from 'model/game-setup'
 
 interface Props {
-    goToGamePage: () => void
+    goToGamePage: () => void,
+    startGame: (setup: GameSetup) => void
 }
 
-export const MenuPage: FC<Props> = ({ goToGamePage }) => {
-    const { startGame } = useContext(GameCtx)
-
+export const MenuPage: FC<Props> = ({ goToGamePage, startGame }) => {
     const [player1HitPointsTxt, setPlayer1HitPoints] = useState('50')
     const [player2HitPointsTxt, setPlayer2HitPoints] = useState('50')
 
@@ -38,9 +36,9 @@ export const MenuPage: FC<Props> = ({ goToGamePage }) => {
                 className={styles.startButton}
                 disabled={player1HitPointsTxt === undefined || player2HitPointsTxt === undefined}
                 onClick={() => {
-                    startGame(GameSetup.duel(
-                        PlayerSetup.from(parseInt(player1HitPointsTxt)),
-                        PlayerSetup.from(parseInt(player2HitPointsTxt))
+                    startGame(createDuel(
+                        { initHitPoints: parseInt(player1HitPointsTxt) },
+                        { initHitPoints: parseInt(player2HitPointsTxt) },
                     ))
                     goToGamePage()
                 }}

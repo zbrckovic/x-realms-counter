@@ -2,11 +2,11 @@ import classNames from 'classnames'
 import { Player } from 'components/Player'
 import { TradeCombat } from 'components/TradeCombat'
 import { TradeAndCombatAlignment } from 'components/TradeCombat/common'
-import { GameCtx } from 'contexts'
-import { HitPointDiffIndicatorPosition } from 'model'
-import React, { Fragment, useContext } from 'react'
+import { CounterMode, HitPointDiffIndicatorPosition } from 'model'
+import React, { Dispatch, FC, Fragment, SetStateAction } from 'react'
 import styles from './DuelPage.module.sass'
 import { FinishButton } from './FinishButton'
+import { Game } from 'model/game'
 
 const hitPointDiffIndicatorPositions = [
     HitPointDiffIndicatorPosition.TOP_LEFT,
@@ -16,19 +16,25 @@ const hitPointDiffIndicatorPositions = [
 const sideClasses = [styles.leftPlayer, styles.rightPlayer]
 const alignments = [TradeAndCombatAlignment.LEFT, TradeAndCombatAlignment.RIGHT]
 
-export const DuelPage = () => {
-    const {
-        game,
-        setHitPoints,
-        finishTurn,
-        finishGame,
-        setTrade,
-        setCombat,
-        setTradeCombatInputMode
-    } = useContext(GameCtx)
+interface Props {
+    game: Game
+    setHitPoints: (playerIndex: number, action: SetStateAction<number>) => void
+    finishTurn: () => void
+    finishGame: () => void
+    setTrade: Dispatch<SetStateAction<number>>
+    setCombat: Dispatch<SetStateAction<number>>
+    setTradeCombatInputMode: Dispatch<SetStateAction<CounterMode>>
+}
 
-    if (game === undefined) throw new Error('game is undefined')
-
+export const DuelPage: FC<Props> = ({
+                                        game,
+                                        setHitPoints,
+                                        finishTurn,
+                                        finishGame,
+                                        setTrade,
+                                        setCombat,
+                                        setTradeCombatInputMode
+                                    }) => {
     const { setup, tradeCombat, turns } = game
 
     const turnIndex = turns.length - 1
