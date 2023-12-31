@@ -12,8 +12,6 @@
 
   pointer-events: none
 
-  border: 1px solid $controls-bg-color
-
   transition-property: opacity
   transition-duration: 0.5s
   opacity: 0
@@ -23,13 +21,17 @@
 
   &.trade
     color: $trade-color
+    text-shadow: $trade-color 0 0 5px
 
   &.combat
     color: $combat-color
+    text-shadow: $combat-color 0 0 5px
 
   &.hitPoints
     &.increment
       color: $increment-color
+      text-shadow: $increment-color 0 0 5px
 
     &.decrement
       color: $decrement-color
+      text-shadow: $decrement-color 0 0 5px

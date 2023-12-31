@@ -53,12 +53,18 @@
       width: 100%
       background: transparent
       color: $foreground-color
+      text-shadow: $foreground-color 0 0 2px
+      transition-property: text-shadow
+      transition-duration: 0.05s
+
+
+      &:hover, &:active
+        text-shadow: $foreground-color 0 0 10px
 
   .combat
     position: relative
     grid-row: 2
     pointer-events: auto
-    border-radius: 50%
 
     &.left
       grid-column: 2
