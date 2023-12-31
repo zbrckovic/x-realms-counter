@@ -1,4 +1,31 @@
+@import "styles/definitions"
+@import "../button"
+
+$color-dark: rgb(91, 22, 6)
+$color-mid: rgb(107, 30, 10)
+$color-light: rgba(255, 253, 220, 1)
+
+$border-dark: rgb(107, 32, 3)
+$border-mid: rgb(154, 37, 16)
+$border-light: rgb(229, 221, 217)
+
 .root
-  background: linear-gradient(to right bottom, rgba(214, 77, 76, 1) 0%, rgb(199, 109, 74) 24%, rgba(214, 116, 74, 1) 42%, rgba(157, 25, 24, 1) 94%)
+  @include button
+
+  padding: 10px
+  background-image: conic-gradient(from 135deg at center center, rgba(106,40,26,1) 0%, rgba(117,43,27,1) 11%, rgba(196,60,31,1) 35%, rgba(255,164,83,1) 50%, rgba(196,60,31,1) 65%, rgba(117,43,27,1) 88%, rgba(106,40,26,1) 99%)
   border-radius: 50%
-  font-size: 40px
+
+  .inner
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    color: white
+    text-shadow: white 1px 0 5px
+
+    height: 100%
+    width: 100%
+    border-radius: 50%
+    background-image: linear-gradient(to right top, rgba(171,51,25,1) 0%, rgba(196,60,31,1) 30%, rgba(255,164,83,1) 50%, rgba(196,60,31,1) 70%, rgba(171,51,25,1) 99%)

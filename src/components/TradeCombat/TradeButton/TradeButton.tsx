@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC } from 'react'
+import React, {ButtonHTMLAttributes, FC} from 'react'
 import styles from './TradeButton.module.sass'
 import classNames from 'classnames'
 
