@@ -27,7 +27,7 @@ interface Props {
 }
 
 export const DuelPage: FC<Props> = ({
-                                        game,
+                                        game: { setup, tradeCombat, turns },
                                         setHitPoints,
                                         finishTurn,
                                         finishGame,
@@ -35,7 +35,6 @@ export const DuelPage: FC<Props> = ({
                                         setCombat,
                                         setTradeCombatInputMode
                                     }) => {
-    const { setup, tradeCombat, turns } = game
 
     const turnIndex = turns.length - 1
     const currentTurn = turns[turnIndex]

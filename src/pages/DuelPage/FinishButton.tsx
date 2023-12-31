@@ -13,7 +13,7 @@ interface Props {
 
 export const FinishButton: FC<Props> = ({ className, onFinishGame, onFinishTurn }) => {
     const onLongPress = useCallback(onFinishGame, [onFinishGame])
-    const onCancel = useCallback<LongPressCallback>((event: any, { reason }) => {
+    const onCancel = useCallback<LongPressCallback>((_event: any, { reason }) => {
         if (reason === 'cancelled-by-release') {
             onFinishTurn()
         }

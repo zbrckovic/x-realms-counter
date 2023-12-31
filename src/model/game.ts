@@ -1,5 +1,5 @@
 import { CounterMode } from 'model/index'
-import { GameSetup } from 'model/setup'
+import { GameSetup } from 'model/game-setup'
 
 export interface Game {
     setup: GameSetup,
