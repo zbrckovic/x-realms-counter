@@ -11,5 +11,8 @@ export const TradeButton: FC<Props> = ({ className, trade, ...props }) =>
         className={classNames(styles.root, className)}
         {...props}
     >
-        {trade}
+        <div className={styles.inner}>
+            {trade}
+        </div>
+
     </button>
